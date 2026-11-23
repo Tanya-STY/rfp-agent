@@ -1,0 +1,306 @@
+{
+  "gold": "evals/rfps/rfp_adversarial_council.md",
+  "gold_status": "reviewed",
+  "runs": [
+    {
+      "run": "eval-20261122-002816-1",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 14,
+        "recall_core": 1.0,
+        "recall_must": 1.0,
+        "recall_core_lenient": 1.0,
+        "precision": 1.0,
+        "distinct_precision": 1.0,
+        "false_positives": 0,
+        "splits": 0,
+        "priority_acc": 0.923,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 6,
+        "trap_checks_total": 6,
+        "trap_risks_found": 2,
+        "trap_risks_linked": 2,
+        "expected_risks_found": 0,
+        "risks": 5,
+        "approach_items": 8,
+        "approach_must_coverage": 1.0,
+        "open_questions": 4,
+        "critic_passed": 1,
+        "revisions": 0,
+        "wall_min": 2.5,
+        "llm_calls": 13,
+        "prompt_tokens": 13028,
+        "completion_tokens": 3601,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.2.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.4.0"
+      },
+      "missed_core": [],
+      "false_positives": [],
+      "split_groups": {},
+      "wrong_priority": [
+        {
+          "gold": "R2",
+          "pred": "FR-02",
+          "expected": "should",
+          "got": "must"
+        }
+      ],
+      "traps": {
+        "priority:R1": {
+          "passed": true,
+          "expected": "must",
+          "got": [
+            "must"
+          ]
+        },
+        "priority:R4": {
+          "passed": true,
+          "expected": "must",
+          "got": [
+            "must"
+          ]
+        },
+        "priority:R7": {
+          "passed": true,
+          "expected": "must",
+          "got": [
+            "must"
+          ]
+        },
+        "forbidden:northgate": {
+          "passed": true,
+          "in": []
+        },
+        "risk:TRAP-HOSTING-CONTRADICTION": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-01",
+            "Q3"
+          ]
+        },
+        "risk:TRAP-NO-TIMELINE": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02",
+            "R-05",
+            "Q4"
+          ]
+        }
+      },
+      "hit_core": [
+        "DP-1",
+        "DP-2",
+        "PRICE",
+        "R1",
+        "R2",
+        "R3a",
+        "R3b",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9"
+      ],
+      "error": null
+    },
+    {
+      "run": "dash-20261122-203039",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 14,
+        "recall_core": 1.0,
+        "recall_must": 1.0,
+        "recall_core_lenient": 1.0,
+        "precision": 1.0,
+        "distinct_precision": 1.0,
+        "false_positives": 0,
+        "splits": 0,
+        "priority_acc": 0.923,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 6,
+        "trap_checks_total": 6,
+        "trap_risks_found": 2,
+        "trap_risks_linked": 2,
+        "expected_risks_found": 0,
+        "risks": 5,
+        "approach_items": 8,
+        "approach_must_coverage": 1.0,
+        "open_questions": 6,
+        "critic_passed": 1,
+        "revisions": 0,
+        "wall_min": 2.9,
+        "llm_calls": 14,
+        "prompt_tokens": 14401,
+        "completion_tokens": 4032,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.2.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.4.0"
+      },
+      "missed_core": [],
+      "false_positives": [],
+      "split_groups": {},
+      "wrong_priority": [
+        {
+          "gold": "R2",
+          "pred": "FR-02",
+          "expected": "should",
+          "got": "must"
+        }
+      ],
+      "traps": {
+        "priority:R1": {
+          "passed": true,
+          "expected": "must",
+          "got": [
+            "must"
+          ]
+        },
+        "priority:R4": {
+          "passed": true,
+          "expected": "must",
+          "got": [
+            "must"
+          ]
+        },
+        "priority:R7": {
+          "passed": true,
+          "expected": "must",
+          "got": [
+            "must"
+          ]
+        },
+        "forbidden:northgate": {
+          "passed": true,
+          "in": []
+        },
+        "risk:TRAP-HOSTING-CONTRADICTION": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-01",
+            "Q3"
+          ]
+        },
+        "risk:TRAP-NO-TIMELINE": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-05"
+          ]
+        }
+      },
+      "hit_core": [
+        "DP-1",
+        "DP-2",
+        "PRICE",
+        "R1",
+        "R2",
+        "R3a",
+        "R3b",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9"
+      ],
+      "error": null
+    }
+  ],
+  "aggregate": {
+    "requirements": {
+      "mean": 14.0,
+      "sd": 0.0
+    },
+    "recall_core": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "recall_must": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "recall_core_lenient": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "precision": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "distinct_precision": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "false_positives": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "splits": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "priority_acc": {
+      "mean": 0.923,
+      "sd": 0.0
+    },
+    "grounding_rate": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "dropped_ungrounded": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "expected_risks_found": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "approach_must_coverage": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "critic_passed": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "revisions": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "wall_min": {
+      "mean": 2.7,
+      "sd": 0.28284271247461895
+    },
+    "llm_calls": {
+      "mean": 13.5,
+      "sd": 0.7071067811865476
+    },
+    "prompt_tokens": {
+      "mean": 13714.5,
+      "sd": 970.8576105691297
+    },
+    "completion_tokens": {
+      "mean": 3816.5,
+      "sd": 304.763022691402
+    }
+  },
+  "consistency": {
+    "runs": 2,
+    "mean_pairwise_jaccard": 1.0,
+    "core_found_in_all_runs": 13,
+    "core_found_in_any_run": 13
+  }
+}

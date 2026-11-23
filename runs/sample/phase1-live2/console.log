@@ -1,0 +1,56 @@
+  17 sections, 34 retrieval chunks, 18970 chars
+[   2.6s] done ingest                 (+2.6s)  requirements=0 approach=0 risks=0 next=extract_requirements
+  extract batch 1/11: sections S01, S02
+  extract batch 2/11: sections S03, S04, S05
+  extract batch 3/11: sections S06
+  extract batch 4/11: sections S07.1
+  extract batch 5/11: sections S07.2
+  extract batch 6/11: sections S08, S09
+  extract batch 7/11: sections S10.1
+  extract batch 8/11: sections S10.2, S11
+  extract batch 9/11: sections S12
+  extract batch 10/11: sections S13, S14
+  extract batch 11/11: sections S15
+  dedupe: 104 -> 92 requirements
+[2297.8s] done extract_requirements   (+2295.2s)  requirements=92 next=design_approach
+  architect search 1/3: legacy system details
+[2599.5s] done design_approach        (+301.8s)  approach=8 next=analyze_risks
+  risk context: 6 passages (S09, S10.1, S11, S12)
+[2930.4s] done analyze_risks          (+330.8s)  risks=10
+  critic: 1 deterministic + 5 llm issues, 1 blocking -> FAIL
+  routing revision 1 to: extract_requirements
+[3073.5s] done critic                 (+143.2s)  next=extract_requirements
+  extract batch 1/1: sections S07.1
+  dedupe: 94 -> 94 requirements
+[3118.2s] done extract_requirements   (+44.6s)  requirements=94 next=design_approach
+  architect search 1/3: legacy system details
+  architect step failed: [design_approach] output cut off at 2048 tokens
+  architect did not return a final approach
+[3558.2s] done design_approach        (+440.0s)  approach=0 next=analyze_risks
+  risk context: 6 passages (S09, S10.1, S11, S12)
+[3753.5s] done analyze_risks          (+195.3s)  risks=6
+  critic: 1 deterministic + 5 llm issues, 1 blocking -> FAIL
+  routing revision 2 to: design_approach
+[3854.3s] done critic                 (+100.8s)  next=design_approach
+  architect search 1/3: ClaimsNet core codebase modification
+[4233.5s] done design_approach        (+379.2s)  approach=14
+  critic: 0 deterministic + 5 llm issues, 0 blocking -> PASS
+[4339.3s] done critic                 (+105.8s)
+[4367.1s] done assemble               (+27.8s)
+
+node                   calls prompt_tok compl_tok latency_s retries
+-------------------------------------------------------------------
+ingest                     1       4897         0       2.6       0
+extract_requirements      14      18104     11290    2339.2       0
+design_approach            9      15018      5398    1120.4       0
+analyze_risks             18       6525      2218     525.9       0
+critic                     3       8284      1225     349.1       0
+assemble                   1        711        83      27.6       0
+-------------------------------------------------------------------
+TOTAL                     46      53539     20214    4364.9       0
+cost: $0.0000  (local models are free; set RFP_PRICE_* for hosted APIs)
+
+summary: ./runs/live2/summary.json
+         ./runs/live2/summary.md
+trace:   ./runs/live2/trace.jsonl
+.venv/bin/python -m rfp_agent run --input inputs/rfp_synthetic_main.md  live2  1.64s user 1.05s system 0% cpu 1:12:48.59 total

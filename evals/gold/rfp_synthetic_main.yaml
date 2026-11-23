@@ -1,0 +1,307 @@
+# Gold labels for inputs/rfp_synthetic_main.md
+#
+# STATUS: REVIEWED by Tanya on 2026-11-22 (drafted by Claude on 2026-11-21).
+# Edit freely: every quote must be copied verbatim from the RFP (a test checks this).
+#
+# requirements:
+#   kind: core      -> a genuine obligation on the solution/vendor. Counts toward recall.
+#         optional  -> defensible either way (objectives, scope bullets, bid-content asks,
+#                      restatements). A prediction matching it is NOT a false positive,
+#                      but missing it costs nothing.
+#   priority:       must | should | could ; alt_priority lists other acceptable answers.
+#   aliases:        other verbatim spans that express the same requirement.
+#
+# risks:
+#   kind: trap      -> deliberately planted in the RFP; the headline risk metric.
+#         expected  -> a competent analyst would raise it; reported separately.
+#   all_of:         list of regex groups; the risk/question text must match every group.
+#   cites:          gold requirement ids the risk must reference (via the predicted
+#                   requirement ids it lists) to count as "correctly linked".
+#   where:          risks | risks_or_questions
+
+document: inputs/rfp_synthetic_main.md
+status: reviewed
+
+requirements:
+  # --- 2. Objectives --------------------------------------------------------------------
+  - {id: OBJ-1, kind: optional, priority: must, category: non_functional,
+     quote: "Reduce the average time from FNOL to correct adjuster assignment from 3.8 working days to under 4 working hours for straightforward claims."}
+  - {id: OBJ-2, kind: optional, priority: must, category: non_functional,
+     quote: "Reduce misrouted claims from 22% to below 5%."}
+  - {id: OBJ-3, kind: optional, priority: must, category: non_functional,
+     quote: "Cut manual document keying effort by at least 60% within twelve months of go-live."}
+  - {id: OBJ-4, kind: optional, priority: must, category: functional,
+     quote: "Give adjusters a concise, trustworthy summary of each claim so they can start assessment without opening every attachment."}
+  - {id: OBJ-5, kind: optional, priority: must, category: functional,
+     quote: "Improve early detection of potentially fraudulent claims by surfacing anomalies to the Special Investigations Unit (SIU), without automatically declining any claim."}
+  - {id: CAP-1, kind: core, priority: must, category: non_functional,
+     quote: "Corvane's own data science team (currently six people) must be able to understand, maintain and retrain the solution after handover.",
+     aliases: ["We want a partner who will help us build lasting internal capability, not a black box."]}
+
+  # --- 3. Scope -------------------------------------------------------------------------
+  - {id: SCOPE-1, kind: optional, priority: must, category: functional,
+     quote: "Ingestion of claim documents from all four lodgement channels."}
+  - {id: SCOPE-2, kind: optional, priority: must, category: functional,
+     quote: "Document classification, data extraction and claim summarisation."}
+  - {id: SCOPE-3, kind: optional, priority: must, category: functional,
+     quote: "Triage: complexity scoring, line-of-business routing and adjuster queue assignment."}
+  - {id: SCOPE-4, kind: optional, priority: must, category: functional,
+     quote: "Fraud-indicator flagging for referral to SIU."}
+  - {id: SCOPE-5, kind: optional, priority: must, category: functional,
+     quote: "An adjuster-facing view of the AI outputs (see section 6 regarding where this must live)."}
+  - {id: SCOPE-6, kind: optional, priority: must, category: non_functional,
+     quote: "Monitoring, evaluation and model governance tooling for the AI components."}
+  - {id: SCOPE-7, kind: core, priority: must, category: commercial,
+     quote: "Knowledge transfer and training for Corvane's IT, data science and claims teams."}
+  - {id: OOS-1, kind: optional, priority: must, category: functional,
+     quote: "A separate initiative is evaluating conversational channels and bidders should not propose one here.",
+     aliases: ["Customer-facing chatbots."]}
+  - {id: OOS-2, kind: optional, priority: could, category: commercial,
+     quote: "Bidders may propose optional extensions, priced separately, but these will not be scored as part of the core evaluation."}
+
+  # --- 4. Current environment (only the stated obligations) -----------------------------
+  - {id: ENV-1, kind: optional, priority: must, category: integration,
+     quote: "write access is not permitted for this project"}
+  - {id: ENV-2, kind: optional, priority: must, category: security_compliance,
+     quote: "All internal applications must use single sign-on."}
+
+  # --- 5. Functional --------------------------------------------------------------------
+  - {id: FR-1, kind: core, priority: must, category: functional,
+     quote: "The solution shall ingest claim documents from the web portal, mobile app, monitored email inboxes and scanned paper batches, and associate every document with the correct claim number in ClaimsNet."}
+  - {id: FR-2, kind: core, priority: must, category: functional,
+     quote: "The solution shall classify each incoming document into Corvane's document taxonomy (currently 27 document types, to be provided after contract award) with a confidence score."}
+  - {id: FR-3, kind: core, priority: must, category: functional,
+     quote: "The solution shall extract key fields from claim forms, police reports, repair estimates and invoices, including at minimum: policy number, incident date, incident location, vehicle registration (motor), third-party details, itemised amounts and totals."}
+  - {id: FR-4, kind: core, priority: must, category: functional,
+     quote: "The solution shall handle handwritten claim forms and low-quality phone photographs of documents, and shall flag documents that cannot be read reliably rather than guessing."}
+  - {id: FR-5a, kind: core, priority: must, category: functional,
+     quote: "The solution shall generate a plain-language summary of each claim (no more than 200 words) for the assigned adjuster, highlighting the incident, the parties involved, amounts claimed and any missing documents."}
+  - {id: FR-5b, kind: core, priority: must, category: functional,
+     quote: "Every factual statement in the summary must be traceable to a source document."}
+  - {id: FR-6, kind: core, priority: must, category: functional,
+     quote: "The solution shall assign each claim a complexity score and route it to the appropriate line-of-business queue and adjuster tier, using rules configurable by Corvane's claims operations team without vendor involvement."}
+  - {id: FR-7a, kind: core, priority: must, category: functional,
+     quote: "The solution shall identify potential fraud indicators (for example, inconsistent dates, duplicate invoices across claims, altered documents) and refer flagged claims to SIU with an explanation."}
+  - {id: FR-7b, kind: core, priority: must, category: functional,
+     quote: "The solution must never automatically decline or close a claim."}
+  - {id: FR-8a, kind: core, priority: must, category: functional,
+     quote: "Adjusters shall be able to accept, correct or reject every AI-generated classification, extracted field and summary."}
+  - {id: FR-8b, kind: core, priority: must, category: functional,
+     quote: "Corrections shall be captured and made available for model improvement."}
+  - {id: FR-9, kind: core, priority: should, category: functional,
+     quote: "Where mandatory documents are missing, the solution should draft a request to the customer for the adjuster to review and send."}
+  - {id: FR-10, kind: core, priority: must, category: functional,
+     quote: "The solution shall provide operational dashboards covering volumes, processing times, routing accuracy, extraction accuracy and adjuster override rates."}
+  - {id: FR-UI, kind: core, priority: must, alt_priority: [should], category: functional,
+     # buried requirement (trap): only stated in prose, not numbered
+     quote: "Whatever the solution produces needs to appear inside the ClaimsNet claim screen that adjusters already work in, or at minimum be reachable from it in a single click with the claim context already loaded.",
+     aliases: ["Adjusters have been clear in workshops that they will not adopt a tool that forces them to switch between screens all day."]}
+  - {id: FR-EXPLAIN, kind: core, priority: must, alt_priority: [should], category: functional,
+     # buried requirement (trap)
+     quote: "Corvane's claims operations managers have also asked that every routing decision be explainable in business terms, so that when a customer or the regulator asks why a claim was handled in a certain way, a team leader can answer without involving IT."}
+  - {id: FR-MATRIX, kind: optional, priority: must, category: commercial,
+     quote: "Bidders must state for each whether it is met out of the box, met through configuration, met through custom development, or not met."}
+
+  # --- 6. Non-functional ----------------------------------------------------------------
+  - {id: NFR-1a, kind: core, priority: should, category: non_functional,
+     quote: "Classification and extraction for a single document should complete within 30 seconds of receipt at the 95th percentile."}
+  - {id: NFR-1b, kind: core, priority: should, category: non_functional,
+     # ambiguity trap: "real time" undefined
+     quote: "Triage and routing for a complete claim should be available to the adjuster in real time once all FNOL documents are received."}
+  - {id: NFR-2, kind: core, priority: must, category: non_functional,
+     quote: "The solution shall sustain peak volumes of 2,500 claims per day (approximately three times the daily average), as experienced during the year-end monsoon flooding season, without degradation beyond the targets in NFR-1."}
+  - {id: NFR-3a, kind: core, priority: must, category: non_functional,
+     quote: "The production service shall achieve 99.5% availability during business hours (08:00 to 20:00, Monday to Saturday)."}
+  - {id: NFR-3b, kind: core, priority: must, category: non_functional,
+     quote: "Planned maintenance must be scheduled outside these hours."}
+  - {id: NFR-4, kind: core, priority: must, category: non_functional,
+     quote: "If the AI components are unavailable, claims must continue to flow into ClaimsNet using the existing manual process, with no loss of documents."}
+  - {id: NFR-5, kind: core, priority: should, category: non_functional,
+     quote: "The architecture should allow other lines of business and additional document types to be onboarded by Corvane staff without re-architecture."}
+  - {id: NFR-6, kind: core, priority: must, category: non_functional,
+     quote: "Adjuster-facing interfaces shall meet WCAG 2.1 AA."}
+  - {id: NFR-7, kind: core, priority: must, category: non_functional,
+     quote: "All models, prompts and configuration shall be version-controlled, and every production output shall be traceable to the model and configuration version that produced it."}
+
+  # --- 7. Integration -------------------------------------------------------------------
+  - {id: INT-1a, kind: core, priority: must, category: integration,
+     quote: "Integration with ClaimsNet shall use the existing SOAP services where they exist."}
+  - {id: INT-1b, kind: optional, priority: must, category: integration,
+     quote: "Where new interfaces are required, the bidder shall describe how they will be built and who will maintain them."}
+  - {id: INT-1c, kind: core, priority: should, alt_priority: [must], category: integration,
+     quote: "Corvane prefers not to modify ClaimsNet's core codebase; minor additions to its user interface are acceptable if delivered through its plugin framework."}
+  - {id: INT-2a, kind: core, priority: must, category: integration,
+     quote: "Policy coverage lookups shall use the existing IBM MQ integration layer."}
+  - {id: INT-2b, kind: core, priority: must, category: integration,
+     quote: "The solution shall not write to the policy administration system."}
+  - {id: INT-3a, kind: core, priority: must, category: integration,
+     quote: "Documents shall continue to be stored in the existing DMS as the system of record."}
+  - {id: INT-3b, kind: core, priority: must, category: integration,
+     quote: "The solution may hold working copies only for as long as needed for processing, subject to the retention rules in section 8."}
+  - {id: INT-4, kind: core, priority: must, category: integration,
+     quote: "The solution shall authenticate users through Corvane's Active Directory using single sign-on."}
+  - {id: INT-SFTP, kind: core, priority: should, category: integration,
+     quote: "Bidders should avoid designing new dependencies on them.",
+     aliases: ["The nightly SFTP batch interfaces are expected to be retired within two years."]}
+
+  # --- 8. Security, privacy, compliance -------------------------------------------------
+  - {id: SEC-REG, kind: core, priority: must, category: security_compliance,
+     quote: "Corvane is regulated by Bank Negara Malaysia (BNM) and must comply with the Personal Data Protection Act 2010 (PDPA) as amended, BNM's Risk Management in Technology (RMiT) policy, and its own information security standards."}
+  - {id: SEC-1, kind: core, priority: must, category: security_compliance,
+     quote: "All customer personal data, claim documents and derived data (including extracted fields, embeddings and model outputs) must be stored and processed within Corvane's own Malaysian data centres.",
+     aliases: ["This includes inference by any AI or machine learning model.",
+               "Use of public cloud services for processing customer data, including Malaysian cloud regions, is not permitted for this programme without prior approval from Corvane's Technology Risk Committee and notification to the regulator, a process that typically takes six to nine months."]}
+  - {id: SEC-2, kind: core, priority: must, category: security_compliance,
+     quote: "The solution shall minimise exposure of personal data, mask identity card numbers in all adjuster-facing summaries except where explicitly needed, and shall not use personal data for any purpose other than claims handling and the improvement of the claims models."}
+  - {id: SEC-3a, kind: core, priority: must, category: security_compliance,
+     quote: "Every AI output, every human override, and every routing decision shall be logged with a timestamp, user or system identity, input references and the model version used."}
+  - {id: SEC-3b, kind: core, priority: must, category: security_compliance,
+     quote: "Audit logs shall be immutable and retained for seven years."}
+  - {id: SEC-4a, kind: core, priority: must, category: security_compliance,
+     quote: "Access shall be role-based."}
+  - {id: SEC-4b, kind: core, priority: must, category: security_compliance,
+     quote: "SIU fraud flags shall be visible only to SIU staff and designated claims managers, not to all adjusters."}
+  - {id: SEC-5a, kind: core, priority: must, category: security_compliance,
+     quote: "The solution shall undergo independent penetration testing before go-live and annually thereafter."}
+  - {id: SEC-5b, kind: core, priority: must, category: security_compliance,
+     quote: "Findings rated high or critical must be remediated before go-live."}
+  - {id: SEC-6, kind: core, priority: must, category: security_compliance,
+     quote: "The bidder shall support Corvane's model risk management process, including documentation of model purpose, training data, known limitations, evaluation results and bias testing across customer segments."}
+  - {id: SEC-7, kind: core, priority: must, category: security_compliance,
+     quote: "Where foundation models or large language models are used, the bidder shall disclose the model, its licence, where it is hosted, and confirm that no Corvane data is used to train third-party models."}
+  - {id: SEC-DEL, kind: core, priority: must, category: security_compliance,
+     # conflict trap (with SEC-SIU)
+     quote: "Working copies of documents held by the solution must be deleted within 30 days of claim closure."}
+  - {id: SEC-SIU, kind: core, priority: must, category: security_compliance,
+     quote: "Bidders should note that the same documents may be required for SIU investigations for considerably longer, and the solution design must accommodate this."}
+
+  # --- 9. Timeline ----------------------------------------------------------------------
+  - {id: TL-PILOT, kind: core, priority: must, category: timeline,
+     # conflict trap (with SEC-1 + hardware lead time)
+     quote: "The pilot go-live date of 30 June 2027 is fixed and is linked to a commitment made to the Board.",
+     aliases: ["Pilot go-live (motor claims, Kuala Lumpur office) | 30 June 2027",
+               "Bidders proposing a later pilot date will need to provide an exceptionally strong justification."]}
+  - {id: TL-AWARD, kind: optional, priority: must, category: timeline,
+     quote: "Contract award | 31 March 2027"}
+  - {id: TL-DESIGN, kind: optional, priority: must, category: timeline,
+     quote: "Discovery and design complete | 15 May 2027"}
+  - {id: TL-MOTOR, kind: optional, priority: must, category: timeline,
+     quote: "Full motor rollout, all offices | 30 September 2027"}
+  - {id: TL-LINES, kind: optional, priority: must, category: timeline,
+     quote: "Home, travel and small-commercial lines live | 31 January 2028"}
+  - {id: TL-HANDOVER, kind: optional, priority: must, category: timeline,
+     quote: "Handover to Corvane support | 31 March 2028"}
+  - {id: TL-COMPUTE, kind: optional, priority: should, category: timeline,
+     quote: "Bidders should describe their assumptions about compute infrastructure clearly."}
+  # Constraints rather than requirements, but extracting them is defensible (they drive the
+  # timeline risk). Added as optional after reviewing runs live5-live9.
+  - {id: CON-GPU, kind: optional, priority: must, category: timeline,
+     quote: "Corvane does not currently own GPU infrastructure in either data centre."}
+  - {id: CON-LEAD, kind: optional, priority: must, category: timeline,
+     quote: "procurement, delivery and installation of new server hardware typically takes 16 to 20 weeks from purchase order"}
+  - {id: CON-CAPEX, kind: optional, priority: must, category: commercial,
+     quote: "capital purchases above MYR 1 million require Board approval at its quarterly meeting"}
+
+  # --- 10. Commercial -------------------------------------------------------------------
+  - {id: COM-BUDGET, kind: core, priority: must, alt_priority: [should], category: commercial,
+     quote: "The indicative budget envelope for this workstream is **MYR 6.5 million to MYR 8 million** over the initial contract term (contract award to handover), inclusive of software licences, implementation services and the first year of support, but exclusive of any hardware Corvane procures directly."}
+  - {id: COM-RUN, kind: core, priority: should, alt_priority: [must], category: commercial,
+     quote: "Ongoing annual run costs after handover should not exceed MYR 1.2 million."}
+  - {id: COM-P1, kind: optional, priority: must, category: commercial, quote: "A fixed price for discovery and design."}
+  - {id: COM-P2, kind: optional, priority: must, category: commercial, quote: "A fixed or capped price for the pilot."}
+  - {id: COM-P3, kind: optional, priority: must, category: commercial,
+     quote: "A time-and-materials or fixed price, at the bidder's option, for the rollout phases, with rate cards."}
+  - {id: COM-P4, kind: optional, priority: must, category: commercial,
+     quote: "Annual licence and support costs for five years after handover."}
+  - {id: COM-P5, kind: optional, priority: must, category: commercial,
+     quote: "Any infrastructure or hardware the bidder recommends Corvane procure, with indicative costs, shown separately."}
+  - {id: COM-MILESTONE, kind: optional, priority: must, category: commercial,
+     quote: "Payment will be milestone-based."}
+  - {id: COM-OUTCOME, kind: core, priority: must, alt_priority: [should], category: commercial,
+     quote: "Corvane expects at least 15% of the services fee to be linked to achievement of measurable outcomes, for example routing accuracy and keying effort reduction, measured after the pilot."}
+  - {id: COM-IP, kind: core, priority: must, category: commercial,
+     quote: "Corvane's standard terms require that all intellectual property in custom work products, including prompts, configurations, fine-tuned model weights and evaluation datasets created specifically for Corvane, vest in Corvane."}
+
+  # --- 11. Experience, team, delivery ---------------------------------------------------
+  - {id: TEAM-REFS, kind: optional, priority: should, category: commercial,
+     quote: "Bidders should describe at least two comparable implementations in insurance or financial services, preferably in Southeast Asia, with client references."}
+  - {id: TEAM-NAMED, kind: core, priority: must, category: commercial,
+     quote: "The proposed team must include a named delivery lead and a named solution architect who will remain on the engagement through at least full motor rollout."}
+  - {id: TEAM-BLEND, kind: optional, priority: should, category: commercial,
+     quote: "Corvane expects a blended onshore and offshore team"}
+  - {id: TEAM-MY, kind: core, priority: must, category: security_compliance,
+     quote: "any personnel with access to production data must be based in Malaysia and hold appropriate security clearance as determined by Corvane"}
+  - {id: EVAL-1, kind: core, priority: should, alt_priority: [must], category: non_functional,
+     quote: "Bidders should explain how they will evaluate model quality before and after go-live, including how they will measure extraction accuracy, routing accuracy and summary faithfulness, and how they will detect drift once in production."}
+  - {id: EVAL-2, kind: optional, priority: should, category: non_functional,
+     quote: "Corvane's data science team will want to run these evaluations themselves after handover."}
+  - {id: LANG-BM, kind: core, priority: must, alt_priority: [should], category: functional,
+     # priority trap: "expected", not "shall"
+     quote: "Support for Bahasa Malaysia documents is expected from the pilot."}
+  - {id: LANG-ZH, kind: core, priority: could, category: functional,
+     # priority trap: buried nice-to-have
+     quote: "If Chinese-language documents could also be handled, that would be welcome, although we recognise this may come later and it is not a condition of award."}
+
+risks:
+  - id: TRAP-TIMELINE
+    kind: trap
+    description: Fixed 30 June pilot vs on-prem-only data residency and a 16-20 week hardware lead time.
+    where: risks
+    all_of:
+      - "pilot|30 june|go-live|go live|timeline"
+      - "hardware|gpu|procure|residency|on-prem|data cent|infrastructure"
+    cites: [TL-PILOT, SEC-1]
+  - id: TRAP-RETENTION
+    kind: trap
+    description: 30-day deletion of working copies vs longer SIU retention.
+    where: risks
+    all_of:
+      - "30[- ]day|delet|retention|retain"
+      - "siu|investigat|fraud"
+    cites: [SEC-DEL]
+  - id: TRAP-REALTIME
+    kind: trap
+    description: "\"Real time\" triage is undefined."
+    where: risks_or_questions
+    all_of:
+      - "real[- ]time"
+    cites: []
+  - id: EXP-CLAIMSNET
+    kind: expected
+    description: Legacy ClaimsNet integration (SOAP only, no REST, original team gone).
+    where: risks
+    all_of:
+      - "claimsnet|soap|legacy|integration"
+    cites: []
+  - id: EXP-DOCQUALITY
+    kind: expected
+    description: Handwriting, poor photos and multilingual documents reduce extraction accuracy.
+    where: risks
+    all_of:
+      - "handwrit|photo|image quality|ocr|bahasa|chinese|language"
+    cites: []
+  - id: EXP-BUDGET
+    kind: expected
+    description: Budget excludes hardware / Board approval needed for capex above MYR 1 million.
+    where: risks
+    all_of:
+      - "budget|capex|capital|cost|myr"
+      - "hardware|board|gpu|infrastructure"
+    cites: []
+
+# Requirement-level trap checks (evaluated on matched requirements).
+priority_traps:
+  LANG-ZH: could
+buried:
+  - FR-UI
+  - FR-EXPLAIN
+
+# Hard constraints the LLM judge checks approach items against (short paraphrases).
+constraints:
+  - "All customer data, documents, embeddings and model inference must stay in Corvane's own Malaysian data centres; no public cloud (including Malaysian regions) without a 6-9 month approval."
+  - "The solution must never write to the policy administration system (PAS)."
+  - "The solution must never automatically decline or close a claim."
+  - "No customer-facing chatbot may be proposed."
+  - "ClaimsNet's core codebase should not be modified; UI additions only via its plugin framework."
+  - "No new dependencies on the nightly SFTP batch interfaces."
+  - "The DMS remains the system of record for documents; working copies deleted within 30 days of claim closure."

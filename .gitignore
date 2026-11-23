@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.cache/
+.env
+.DS_Store
+
+# Run artefacts (traces + summaries). Commit a curated sample under runs/sample/ if wanted.
+runs/*
+!runs/sample/
+
+# Demo videos (large) and machine-transfer files stay out of git
+demo/*.mp4
+demo/transfer/
+demo/index.html
+demo/voiceover-script.md
+demo/narration/

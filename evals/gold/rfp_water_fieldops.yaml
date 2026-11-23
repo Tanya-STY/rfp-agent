@@ -1,0 +1,125 @@
+# Gold labels for evals/rfps/rfp_water_fieldops.md
+# STATUS: REVIEWED by Tanya on 2026-11-22 (drafted by Claude on 2026-11-21). Format: see rfp_synthetic_main.yaml.
+#
+# Planted traps:
+#  - buried: offline operation (no mobile coverage) and voice/gloves, only in prose
+#  - ambiguity: N1 "quickly enough" has no number
+#  - conflict: pilot by 1 July 2027 vs 12-week union consultation that starts only after design
+#    (tender closes 14 April) -> infeasible
+#  - conflict: S2 keep every question 7 years vs S3 voice recordings not stored
+#  - priority: GIS integration "desirable but not essential" -> could; pilot date "would like" -> should
+
+document: evals/rfps/rfp_water_fieldops.md
+status: reviewed
+
+requirements:
+  # Scope statements: optional, consistent with SCOPE-* in rfp_synthetic_main.yaml.
+  - {id: SCOPE-QA, kind: optional, priority: must, category: functional,
+     quote: "Ellery Water is seeking a supplier to deliver a knowledge assistant that field technicians can ask questions of, in plain English, and that answers from the Corporation's own documents."}
+  - {id: SCOPE-WO, kind: optional, priority: must, category: functional,
+     quote: "The assistant will also help technicians write up completed work orders."}
+  - {id: SCOPE-SCADA, kind: core, priority: must, category: security_compliance,
+     quote: "The assistant must not issue commands to the SCADA system under any circumstances."}
+  - {id: SCOPE-OUT, kind: optional, priority: must, category: functional,
+     quote: "The following are out of scope: asset investment planning, customer billing, and any control of plant equipment."}
+  - {id: F1, kind: core, priority: must, category: functional,
+     quote: "The assistant shall answer technicians' questions using only the Corporation's approved document library and shall cite the document and page for every answer."}
+  - {id: F2, kind: core, priority: must, category: functional,
+     quote: "Where the library does not contain an answer, the assistant shall say so plainly rather than offering a best guess."}
+  - {id: F3, kind: core, priority: must, category: functional,
+     quote: "For any question involving isolation, confined-space entry, chlorine handling or live electrical work, the assistant shall display the relevant safe work procedure in full, not a summary."}
+  - {id: F4, kind: core, priority: should, category: functional,
+     quote: "The assistant should draft the completion notes for a work order from a technician's spoken or typed description, for the technician to check and submit to the Maximo asset management system."}
+  - {id: F5, kind: core, priority: must, category: functional,
+     quote: "The solution shall let nominated senior technicians record tips and workarounds, which are reviewed by a maintenance planner before being added to the library."}
+  - {id: F6, kind: core, priority: must, category: functional,
+     quote: "Technicians shall be able to flag any answer as wrong or unhelpful in no more than two taps."}
+  - {id: OFFLINE, kind: core, priority: must, category: non_functional,
+     quote: "A tool that only works with a connection will not be used.",
+     aliases: ["Most of our sites have no mobile coverage."]}
+  - {id: VOICE, kind: core, priority: should, alt_priority: [could, must], category: functional,
+     quote: "Technicians wear gloves for most tasks, and some will want to use the assistant by voice."}
+  - {id: N1, kind: core, priority: should, category: non_functional,
+     quote: "Answers should be returned quickly enough that technicians do not abandon the tool."}
+  - {id: N2, kind: core, priority: must, category: non_functional,
+     quote: "The supplier shall demonstrate, before go-live, that the assistant answers correctly on a test set of at least 300 questions agreed with Ellery Water, with an accuracy of at least 90%."}
+  - {id: N3, kind: core, priority: must, category: non_functional,
+     quote: "The assistant shall run on the Corporation's standard ruggedised Android tablets (Samsung Galaxy Tab Active5)."}
+  - {id: N4, kind: core, priority: must, category: non_functional,
+     quote: "New or revised documents shall be searchable by the assistant within two working days of being approved in the document library."}
+  - {id: I1, kind: core, priority: must, category: integration,
+     quote: "Work orders shall be read from and written to IBM Maximo 7.6 through its existing REST API."}
+  - {id: I2a, kind: core, priority: must, category: integration,
+     quote: "The solution shall read documents from there and shall not keep an unmanaged copy elsewhere."}
+  - {id: I3, kind: core, priority: must, category: integration,
+     quote: "Users shall sign in with their existing Microsoft Entra ID accounts."}
+  - {id: GIS, kind: core, priority: could, category: integration,
+     quote: "Integration with the GIS (Esri ArcGIS) to show nearby assets would be desirable but is not essential for the first release."}
+  - {id: S-RECORDS-ACT, kind: optional, priority: must, category: security_compliance,
+     quote: "Ellery Water is a state-owned corporation and is subject to the State Records Act and the state's information security framework."}
+  - {id: S1, kind: core, priority: must, category: security_compliance,
+     quote: "Data shall not leave Australia.",
+     aliases: ["The solution may use cloud services provided they are hosted in Australian data centres."]}
+  - {id: S2, kind: core, priority: must, category: security_compliance,
+     quote: "Every question asked of the assistant, the answer given and the documents cited shall be retained as a public record for seven years."}
+  - {id: S3, kind: core, priority: must, category: security_compliance,
+     quote: "Voice recordings of technicians shall not be stored after transcription, under the Corporation's agreement with the technicians' union."}
+  - {id: S4, kind: core, priority: must, category: security_compliance,
+     quote: "Contractors working for Ellery Water shall have access only to the documents relevant to their contract."}
+  - {id: TL-PILOT, kind: core, priority: should, alt_priority: [must], category: timeline,
+     quote: "The Corporation would like the assistant in the hands of a pilot group of 30 technicians by 1 July 2027, with full rollout by the end of 2027."}
+  - {id: TL-PLAN, kind: optional, priority: must, category: timeline,
+     quote: "The supplier shall provide a delivery plan showing how these dates will be met."}
+  - {id: UNION, kind: core, priority: must, category: timeline,
+     quote: "Under the Corporation's enterprise agreement, any new tool used by field staff requires twelve weeks of formal consultation with the union before it can be introduced.",
+     aliases: ["Consultation can begin only once the tool's design is settled."]}
+  - {id: COM-PRICE, kind: core, priority: must, category: commercial,
+     quote: "The supplier shall provide a fixed price for the pilot and a per-user annual subscription price for rollout."}
+  - {id: COM-CAP, kind: core, priority: must, alt_priority: [should], category: commercial,
+     quote: "The total contract value is not expected to exceed AUD 1.8 million over three years."}
+  - {id: TRAINING, kind: core, priority: must, category: commercial,
+     quote: "The supplier shall provide training for all field technicians, delivered at depots, and shall not rely on online self-paced training alone."}
+
+risks:
+  - id: TRAP-UNION-TIMELINE
+    kind: trap
+    description: 1 July pilot vs 12-week union consultation that only starts once design is settled.
+    where: risks
+    all_of: ["pilot|1 july|timeline|go-live|go live", "union|consultation|twelve weeks|12[- ]week"]
+    cites: [TL-PILOT, UNION]
+  - id: TRAP-VOICE-RECORDS
+    kind: trap
+    description: Keep every question for 7 years vs never store voice recordings.
+    where: risks
+    all_of: ["voice|recording|audio|transcri", "record|retain|retention|seven years|7 years"]
+    cites: [S3]
+  - id: TRAP-RESPONSE-TIME
+    kind: trap
+    description: N1 response time has no number.
+    where: risks_or_questions
+    all_of: ["response time|quickly|latency|how fast|abandon"]
+    cites: []
+  - id: EXP-OFFLINE-COPY
+    kind: expected
+    description: Offline use needs documents on the device, but I2 forbids unmanaged copies.
+    where: risks
+    all_of: ["offline|coverage|connectivity|no signal", "copy|cache|sync|on[- ]device|local"]
+    cites: []
+  - id: EXP-SCANNED-DOCS
+    kind: expected
+    description: Old scanned manuals hurt retrieval and answer accuracy (90% target).
+    where: risks
+    all_of: ["scan|ocr|old|legacy|quality|accuracy"]
+    cites: []
+
+priority_traps:
+  GIS: could
+  TL-PILOT: should
+buried: [OFFLINE, VOICE]
+
+constraints:
+  - "The assistant must never send commands to SCADA or control plant equipment."
+  - "Data must stay in Australia; cloud is allowed only in Australian data centres."
+  - "Voice recordings must not be stored after transcription."
+  - "Answers must come only from the approved document library, with citations."
+  - "No unmanaged copy of the document library outside SharePoint."

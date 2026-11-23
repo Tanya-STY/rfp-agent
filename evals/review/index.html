@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eval Review</title>
+<style>
+:root {
+  --bg: #f7f7f5; --card: #fff; --ink: #1d1d1b; --muted: #6b6b66; --line: #e3e2dc;
+  --accent: #2f5bd3; --ok: #1f8a4c; --bad: #c0392b; --warn: #b7791f; --chip: #efeee9;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #161615; --card: #20201e; --ink: #ecebe6; --muted: #9c9b94; --line: #33332f;
+          --accent: #7b9cf0; --ok: #4cc283; --bad: #ef7a6b; --warn: #e0b356; --chip: #2b2b28; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+       font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+header { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+.top { display: flex; align-items: center; gap: 12px; padding: 12px 0 0; flex-wrap: wrap; }
+h1 { font-size: 18px; margin: 0; flex: 1; }
+#saved { font-size: 13px; color: var(--muted); }
+nav { display: flex; gap: 4px; margin-top: 10px; }
+nav button { border: 0; background: none; color: var(--muted); padding: 8px 12px; font: inherit;
+             border-bottom: 2px solid transparent; cursor: pointer; }
+nav button.on { color: var(--ink); border-color: var(--accent); font-weight: 600; }
+.help { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px;
+        margin: 16px 0; }
+.help p { margin: 4px 0; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px;
+        margin: 12px 0; }
+.card.done { border-left: 4px solid var(--ok); }
+.meta { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.quote { border-left: 3px solid var(--line); padding: 2px 10px; margin: 8px 0; font-style: italic; }
+.field { margin: 6px 0; }
+.field b { display: inline-block; min-width: 92px; color: var(--muted); font-weight: 500; }
+.q { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 10px 0 0; }
+.q .label { flex: 1 1 260px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { border: 0; background: var(--card); color: var(--ink); padding: 6px 12px; font: inherit;
+              cursor: pointer; border-right: 1px solid var(--line); min-width: 40px; }
+.seg button:last-child { border-right: 0; }
+.seg button.on { background: var(--accent); color: #fff; }
+.seg button.on.yes { background: var(--ok); } .seg button.on.no { background: var(--bad); }
+.judge { margin-top: 10px; font-size: 13px; color: var(--muted); }
+.chip { display: inline-block; background: var(--chip); border-radius: 6px; padding: 1px 7px; font-size: 12px;
+        margin-right: 4px; }
+.chip.core { color: var(--accent); font-weight: 600; }
+.progress { font-size: 13px; color: var(--muted); }
+select, input[type=text], textarea { font: inherit; color: var(--ink); background: var(--card);
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; }
+textarea { width: 100%; min-height: 70px; }
+input[type=text] { flex: 1 1 220px; }
+.files { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0; }
+.files button { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 8px;
+                padding: 6px 12px; font: inherit; cursor: pointer; }
+.files button.on { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+a { color: var(--accent); }
+.big { border: 0; background: var(--accent); color: #fff; border-radius: 8px; padding: 8px 14px; font: inherit;
+       cursor: pointer; }
+.hidden { display: none; }
+h2 { font-size: 16px; margin: 24px 0 4px; }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top"><h1>Eval review</h1><span id="saved">Answers save automatically</span></div>
+  <nav><button id="t-j" class="on">1. Judge verdicts</button><button id="t-g">2. Gold sets</button></nav>
+</div></header>
+
+<main class="wrap">
+<section id="p-j">
+  <div class="help">
+    <p><b>What this is:</b> the AI judge (llama3.1) graded parts of one pipeline run. You grade the same items, so we can see how often it agrees with you.</p>
+    <p>Answer each question yourself first. The judge's answer is shown only after you answer, so it doesn't bias you. <span class="progress" id="j-prog"></span></p>
+  </div>
+  <div id="j-list"></div>
+  <div class="help" id="j-done-msg">When all 20 are answered, tell Claude "done" and it will run the calibration.</div>
+</section>
+
+<section id="p-g" class="hidden">
+  <div class="help">
+    <p><b>What this is:</b> the answer key for each test RFP, drafted by Claude. Every score depends on it, so check it's right.</p>
+    <p><span class="chip core">core</span> a clear obligation: missing it counts against the pipeline.
+       <span class="chip">optional</span> could go either way (objectives, scope bullets, bid-format asks): finding or missing it doesn't count.</p>
+    <p>For each item, click <b>OK</b> or <b>Change</b>. If most look fine, review the ones you doubt and click "everything else is fine" at the bottom.</p>
+  </div>
+  <div class="files" id="g-files"></div>
+  <div id="g-body"></div>
+</section>
+</main>
+
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let savedTimer;
+async function post(url, body) {
+  const r = await fetch(url, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
+  $("#saved").textContent = r.ok ? "Saved ✓" : "Save failed: is the server running?";
+  clearTimeout(savedTimer); savedTimer = setTimeout(() => $("#saved").textContent = "Answers save automatically", 1500);
+}
+function tab(which) {
+  $("#t-j").classList.toggle("on", which === "j"); $("#t-g").classList.toggle("on", which === "g");
+  $("#p-j").classList.toggle("hidden", which !== "j"); $("#p-g").classList.toggle("hidden", which !== "g");
+  try { localStorage.setItem("tab", which); } catch (e) {}
+}
+$("#t-j").onclick = () => tab("j"); $("#t-g").onclick = () => tab("g");
+
+/* ---------------- judgments ---------------- */
+const QUESTIONS = {
+  requirement: [
+    ["faithful", "bool", "Does the description say the same thing as the quote? (not stronger, weaker, or wrong)"],
+    ["priority_ok", "bool", "Is the priority right for the quote's wording? (shall/must → must, should/expects → should, may/nice to have → could)"],
+  ],
+  approach: [
+    ["specificity", "score", "How specific is it? 1 = vague buzzwords … 5 = names concrete systems, choices and limits"],
+    ["violates_constraint", "bool", "Does it break any of the hard constraints listed?"],
+  ],
+  risk: [
+    ["specificity", "score", "How specific is the risk? 1 = generic (\"project may be late\") … 5 = names the exact clash in this RFP"],
+    ["mitigation", "score", "How useful is the mitigation? 1 = \"monitor closely\" … 5 = a concrete action someone could take"],
+  ],
+};
+let J = [];
+function ctxHtml(it) {
+  const c = it.ctx;
+  if (it.kind === "requirement") return `
+    <div class="quote">${esc(c.source_quote)}</div>
+    <div class="field"><b>Title</b>${esc(c.title)}</div>
+    <div class="field"><b>Description</b>${esc(c.description)}</div>
+    <div class="field"><b>Priority</b><span class="chip">${esc(c.priority)}</span></div>`;
+  if (it.kind === "approach") return `
+    <div class="field"><b>Summary</b>${esc(c.summary)}</div>
+    <div class="field"><b>Components</b>${(c.components||[]).map(x => `<span class="chip">${esc(x)}</span>`).join("")}</div>
+    <div class="field"><b>Rationale</b>${esc(c.rationale)}</div>
+    <div class="field"><b>Covers</b>${Object.entries(c.requirements||{}).map(([k,v]) => `${esc(k)} ${esc(v)}`).join("; ")}</div>
+    <details><summary class="meta">Hard constraints to check against</summary><ul>${(c.constraints||[]).map(x => `<li>${esc(x)}</li>`).join("")}</ul></details>`;
+  return `
+    <div class="field"><b>Risk</b>${esc(c.title)}</div>
+    <div class="field"><b>Description</b>${esc(c.description)}</div>
+    <div class="field"><b>Mitigation</b>${esc(c.mitigation)}</div>
+    <div class="field"><b>Linked to</b>${(c.related_requirement_ids||[]).map(x => `<span class="chip">${esc(x)}</span>`).join("")}</div>`;
+}
+function answered(it) {
+  return QUESTIONS[it.kind].every(([k]) => it.human && it.human[k] !== undefined && it.human[k] !== null);
+}
+function fmt(v) { return v === true ? "yes" : v === false ? "no" : v; }
+function renderJ() {
+  const done = J.filter(answered).length;
+  $("#j-prog").textContent = `${done} of ${J.length} done.`;
+  $("#j-done-msg").classList.toggle("hidden", done < J.length);
+  $("#j-list").innerHTML = J.map((it, n) => {
+    const qs = QUESTIONS[it.kind].map(([k, type, label]) => {
+      const v = it.human?.[k];
+      const opts = type === "bool" ? [[true, "Yes", "yes"], [false, "No", "no"]] : [1,2,3,4,5].map(x => [x, x, ""]);
+      return `<div class="q"><span class="label">${label}</span><span class="seg">${opts.map(([val, txt, cls]) =>
+        `<button class="${cls} ${v === val ? "on" : ""}" data-n="${n}" data-k="${k}" data-v='${JSON.stringify(val)}'>${txt}</button>`).join("")}</span></div>`;
+    }).join("");
+    const judge = answered(it) ? `<div class="judge">Judge said: ${QUESTIONS[it.kind].map(([k]) =>
+      `${k} = <b>${fmt(it.judge[k])}</b>`).join(", ")}. ${esc(it.judge.reason)}</div>` : "";
+    return `<div class="card ${answered(it) ? "done" : ""}"><div class="meta">${n + 1} / ${J.length} · ${it.kind} · ${esc(it.item)}</div>${ctxHtml(it)}${qs}${judge}</div>`;
+  }).join("");
+}
+$("#j-list").addEventListener("click", e => {
+  const b = e.target.closest("button[data-n]"); if (!b) return;
+  const it = J[+b.dataset.n];
+  it.human = {...(it.human || {}), [b.dataset.k]: JSON.parse(b.dataset.v)};
+  post("/api/judgments", {index: it.index, human: it.human});
+  renderJ();
+});
+
+/* ---------------- gold ---------------- */
+let G = [], cur = 0;
+function goldItem(f, r) {
+  const v = f.review[r.id];
+  const st = v?.status;
+  const alt = (r.alt_priority || []).length ? ` (also ok: ${r.alt_priority.join(", ")})` : "";
+  const change = st === "change" ? `<div class="row">
+      <label>Kind <select data-f="kind" data-id="${esc(r.id)}">${["core","optional","remove"].map(k =>
+        `<option ${((v.kind ?? r.kind) === k) ? "selected" : ""}>${k}</option>`).join("")}</select></label>
+      <label>Priority <select data-f="priority" data-id="${esc(r.id)}">${["must","should","could"].map(k =>
+        `<option ${((v.priority ?? r.priority) === k) ? "selected" : ""}>${k}</option>`).join("")}</select></label>
+      <input type="text" data-f="note" data-id="${esc(r.id)}" placeholder="Note (optional): why, or what else to change" value="${esc(v.note)}">
+    </div>` : "";
+  return `<div class="card ${st ? "done" : ""}">
+    <div class="meta">${esc(r.id)} · ${esc(r.category)}</div>
+    <div class="quote">${esc(r.quote)}</div>
+    <div><span class="chip ${r.kind === "core" ? "core" : ""}">${esc(r.kind)}</span><span class="chip">${esc(r.priority)}${esc(alt)}</span></div>
+    <div class="row"><span class="seg">
+      <button class="yes ${st === "ok" ? "on" : ""}" data-act="ok" data-id="${esc(r.id)}">OK</button>
+      <button class="${st === "change" ? "on" : ""}" data-act="change" data-id="${esc(r.id)}">Change</button>
+    </span></div>${change}</div>`;
+}
+function riskItem(f, r) {
+  const key = "risk:" + r.id, v = f.review[key];
+  return `<div class="card ${v ? "done" : ""}">
+    <div class="meta">${esc(r.id)} · ${esc(r.kind)}${r.cites?.length ? " · must cite " + r.cites.map(esc).join(", ") : ""}</div>
+    <div>${esc(r.description)}</div>
+    <div class="row"><span class="seg">
+      <button class="yes ${v?.status === "ok" ? "on" : ""}" data-act="ok" data-id="${esc(key)}">OK</button>
+      <button class="${v?.status === "change" ? "on" : ""}" data-act="change" data-id="${esc(key)}">Change</button>
+    </span>${v?.status === "change" ? `<input type="text" data-f="note" data-id="${esc(key)}" placeholder="What's wrong?" value="${esc(v.note)}">` : ""}</div></div>`;
+}
+function renderG() {
+  $("#g-files").innerHTML = G.map((f, i) => {
+    const n = f.requirements.length + f.risks.length;
+    const d = Object.keys(f.review).filter(k => !k.startsWith("_")).length;
+    const all = f.review._rest_ok ? " ✓" : ` (${d}/${n})`;
+    return `<button class="${i === cur ? "on" : ""}" data-file="${i}">${esc(f.file.replace(".yaml", ""))}${all}</button>`;
+  }).join("");
+  const f = G[cur];
+  const sections = {};
+  f.requirements.forEach(r => (sections[r.id.split("-")[0]] ||= []).push(r));
+  $("#g-body").innerHTML = `
+    <p class="progress">RFP: <a href="/rfp/${esc(f.document)}" target="_blank">${esc(f.document)}</a> (opens the full text)</p>
+    <h2>Requirements (${f.requirements.length}: ${f.requirements.filter(r => r.kind === "core").length} core)</h2>
+    ${f.requirements.map(r => goldItem(f, r)).join("")}
+    <h2>Risks the pipeline should find (${f.risks.length})</h2>
+    ${f.risks.map(r => riskItem(f, r)).join("")}
+    <h2>Anything missing?</h2>
+    <p class="progress">Obligations in the RFP that aren't listed above (paste the sentence), or risks you'd expect an analyst to raise.</p>
+    <textarea data-f="_missing" data-id="_missing" placeholder="Leave empty if nothing is missing">${esc(f.review._missing)}</textarea>
+    <div class="row"><button class="big" data-act="rest">${f.review._rest_ok ? "✓ Marked: everything not changed is fine" : "Everything I haven't changed in this file is fine"}</button></div>`;
+}
+function setG(key, value) {
+  const f = G[cur];
+  if (value === null) delete f.review[key]; else f.review[key] = value;
+  post("/api/gold", {file: f.file, key, value});
+}
+$("#g-files").addEventListener("click", e => {
+  const b = e.target.closest("button[data-file]"); if (!b) return;
+  cur = +b.dataset.file; renderG(); window.scrollTo(0, 0);
+});
+$("#g-body").addEventListener("click", e => {
+  const b = e.target.closest("button[data-act]"); if (!b) return;
+  const f = G[cur];
+  if (b.dataset.act === "rest") { setG("_rest_ok", f.review._rest_ok ? null : true); renderG(); return; }
+  const id = b.dataset.id, prev = f.review[id];
+  if (prev?.status === b.dataset.act) setG(id, null);
+  else setG(id, b.dataset.act === "ok" ? {status: "ok"} : {status: "change", ...(prev || {}), status: "change"});
+  const y = window.scrollY; renderG(); window.scrollTo(0, y);
+});
+$("#g-body").addEventListener("change", e => {
+  const el = e.target.closest("[data-f]"); if (!el) return;
+  const f = G[cur], id = el.dataset.id;
+  if (id === "_missing") { setG("_missing", el.value.trim() || null); return; }
+  setG(id, {...(f.review[id] || {status: "change"}), [el.dataset.f]: el.value});
+});
+
+/* ---------------- load ---------------- */
+(async () => {
+  J = (await (await fetch("/api/judgments")).json()).items;
+  G = (await (await fetch("/api/gold")).json()).files;
+  renderJ(); renderG();
+  let t = "j"; try { t = localStorage.getItem("tab") || "j"; } catch (e) {}
+  tab(t);
+})();
+</script>
+</body>
+</html>

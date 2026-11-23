@@ -1,0 +1,1860 @@
+{
+  "executive_summary": "The client seeks to reduce FNOL to adjuster assignment time and misrouting of claims through an intelligent claims triage and document intelligence platform. The proposed solution will integrate with existing systems, provide claim summaries, and implement fraud detection while ensuring no claims are automatically declined. Key risks include potential conflicts with hardware procurement timelines, security compliance issues, and the risk of late hardware delivery.",
+  "requirements": [
+    {
+      "id": "FR-01",
+      "title": "Reduce FNOL to adjuster assignment time",
+      "description": "Reduce average time from FNOL to correct adjuster assignment to under 4 working hours.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S03",
+      "source_quote": "Reduce the average time from FNOL to correct adjuster assignment from 3.8 working days to under 4 working hours for straightforward claims.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-02",
+      "title": "Reduce misrouted claims",
+      "description": "Reduce misrouted claims from 22% to below 5%.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S03",
+      "source_quote": "Reduce misrouted claims from 22% to below 5%.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-03",
+      "title": "Provide concise claim summary",
+      "description": "Provide adjusters with a concise, trustworthy summary of each claim.",
+      "category": "functional",
+      "priority": "should",
+      "source_section": "S03",
+      "source_quote": "Give adjusters a concise, trustworthy summary of each claim so they can start assessment without opening every attachment.",
+      "confidence": 0.9,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-04",
+      "title": "Detect potential fraud",
+      "description": "Detect and surface anomalies to the SIU for potentially fraudulent claims.",
+      "category": "functional",
+      "priority": "should",
+      "source_section": "S03",
+      "source_quote": "Improve early detection of potentially fraudulent claims by surfacing anomalies to the Special Investigations Unit (SIU), without automatically declining any claim.",
+      "confidence": 0.9,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-05",
+      "title": "Ingest claim documents",
+      "description": "Ingest claim documents from all four lodgement channels.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S04",
+      "source_quote": "- Ingestion of claim documents from all four lodgement channels.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-06",
+      "title": "Document classification and data extraction",
+      "description": "Perform document classification, data extraction and claim summarisation.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S04",
+      "source_quote": "- Document classification, data extraction and claim summarisation.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-07",
+      "title": "Triage claims",
+      "description": "Perform triage: complexity scoring, line-of-business routing and adjuster queue assignment.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S04",
+      "source_quote": "- Triage: complexity scoring, line-of-business routing and adjuster queue assignment.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-08",
+      "title": "Fraud indicator flagging",
+      "description": "Flag claims for fraud indicators for referral to SIU.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S04",
+      "source_quote": "- Fraud-indicator flagging for referral to SIU.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-09",
+      "title": "Adjuster-facing AI outputs",
+      "description": "Provide an adjuster-facing view of the AI outputs.",
+      "category": "functional",
+      "priority": "should",
+      "source_section": "S04",
+      "source_quote": "- An adjuster-facing view of the AI outputs (see section 6 regarding where this must live).",
+      "confidence": 0.9,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-10",
+      "title": "Monitoring and evaluation tooling",
+      "description": "Provide monitoring, evaluation and model governance tooling for AI components.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S04",
+      "source_quote": "- Monitoring, evaluation and model governance tooling for the AI components.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-11",
+      "title": "Multi-channel ingestion",
+      "description": "Ingest claim documents from various sources.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.1",
+      "source_quote": "**FR-1 Multi-channel ingestion.** The solution shall ingest claim documents from the web portal, mobile app, monitored email inboxes and scanned paper batches, and associate every document with the correct claim number in ClaimsNet.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-12",
+      "title": "Document classification",
+      "description": "Classify documents into Corvane's taxonomy.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.1",
+      "source_quote": "**FR-2 Document classification.** The solution shall classify each incoming document into Corvane's document taxonomy (currently 27 document types, to be provided after contract award) with a confidence score.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-13",
+      "title": "Data extraction",
+      "description": "Extract key fields from claim documents.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.1",
+      "source_quote": "**FR-3 Data extraction.** The solution shall extract key fields from claim forms, police reports, repair estimates and invoices, including at minimum: policy number, incident date, incident location, vehicle registration (motor), third-party details, itemised amounts and totals.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-14",
+      "title": "Handle low-quality documents",
+      "description": "Handle handwritten and low-quality images.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.1",
+      "source_quote": "**FR-4 Handwriting and image quality.** The solution shall handle handwritten claim forms and low-quality phone photographs of documents, and shall flag documents that cannot be read reliably rather than guessing.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-15",
+      "title": "Generate claim summary",
+      "description": "Generate a plain-language summary of each claim.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.1",
+      "source_quote": "**FR-5 Claim summarisation.** The solution shall generate a plain-language summary of each claim (no more than 200 words) for the assigned adjuster, highlighting the incident, the parties involved, amounts claimed and any missing documents. Every factual statement in the summary must be traceable to a source document.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-16",
+      "title": "Triage and routing",
+      "description": "Route claims based on complexity score.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.1",
+      "source_quote": "**FR-6 Triage and routing.** The solution shall assign each claim a complexity score and route it to the appropriate line-of-business queue and adjuster tier, using rules configurable by Corvane's claims operations team without vendor involvement.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-17",
+      "title": "Identify fraud indicators",
+      "description": "Solution must identify potential fraud indicators.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.1",
+      "source_quote": "**FR-7 Fraud indicators.** The solution shall identify potential fraud indicators (for example, inconsistent dates, duplicate invoices across claims, altered documents) and refer flagged claims to SIU with an explanation.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-18",
+      "title": "Never automatically decline claims",
+      "description": "Solution must not automatically decline or close claims.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.1",
+      "source_quote": "The solution must never automatically decline or close a claim.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-19",
+      "title": "Human review",
+      "description": "Allow adjusters to review and correct AI-generated outputs.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.1",
+      "source_quote": "**FR-8 Human review.** Adjusters shall be able to accept, correct or reject every AI-generated classification, extracted field and summary. Corrections shall be captured and made available for model improvement.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-20",
+      "title": "Capture corrections for model improvement",
+      "description": "Corrections must be captured and made available for model improvement.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.2",
+      "source_quote": "Corrections shall be captured and made available for model improvement.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-21",
+      "title": "Missing information requests",
+      "description": "Draft requests for missing documents.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.1",
+      "source_quote": "**FR-9 Missing information requests.** Where mandatory documents are missing, the solution should draft a request to the customer for the adjuster to review and send.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-22",
+      "title": "Provide operational dashboards",
+      "description": "Operational dashboards must cover specified metrics.",
+      "category": "functional",
+      "priority": "must",
+      "source_section": "S07.2",
+      "source_quote": "The solution shall provide operational dashboards covering volumes, processing times, routing accuracy, extraction accuracy and adjuster override rates.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-23",
+      "title": "Explain routing decisions",
+      "description": "Routing decisions must be explainable in business terms.",
+      "category": "functional",
+      "priority": "should",
+      "source_section": "S07.2",
+      "source_quote": "Corvane's claims operations managers have also asked that every routing decision be explainable in business terms, so that when a customer or the regulator asks why a claim was handled in a certain way, a team leader can answer without involving IT.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-24",
+      "title": "Support Bahasa Malaysia",
+      "description": "Support for Bahasa Malaysia documents is expected from the pilot.",
+      "category": "functional",
+      "priority": "could",
+      "source_section": "S13",
+      "source_quote": "Many of our customers in Sabah and in the northern region correspond in Bahasa Malaysia, and a meaningful minority of documents (we estimate 10 to 15%) arrive in Chinese. Support for Bahasa Malaysia documents is expected from the pilot.",
+      "confidence": 0.8,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "FR-25",
+      "title": "Chinese document support",
+      "description": "Support for Chinese documents is welcome but not required.",
+      "category": "functional",
+      "priority": "could",
+      "source_section": "S13",
+      "source_quote": "Many of our customers in Sabah and in the northern region correspond in Bahasa Malaysia, and a meaningful minority of documents (we estimate 10 to 15%) arrive in Chinese. Support for Bahasa Malaysia documents is expected from the pilot. If Chinese-language documents could also be handled, that would be welcome, although we recognise this may come later and it is not a condition of award.",
+      "confidence": 0.8,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-01",
+      "title": "Cut manual document keying effort",
+      "description": "Cut manual document keying effort by at least 60% within twelve months of go-live.",
+      "category": "non_functional",
+      "priority": "must",
+      "source_section": "S03",
+      "source_quote": "Cut manual document keying effort by at least 60% within twelve months of go-live.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-02",
+      "title": "Historical claim documents",
+      "description": "Approximately 2.1 million documents from the last five years may be usable for training and evaluation.",
+      "category": "non_functional",
+      "priority": "should",
+      "source_section": "S06",
+      "source_quote": "Roughly 9 TB of historical claim documents exist, of which approximately 2.1 million documents relate to claims closed in the last five years and may be usable for training and evaluation, subject to the data protection constraints in section 8.",
+      "confidence": 0.8,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-03",
+      "title": "Two data centres",
+      "description": "The Company operates two data centres in Malaysia.",
+      "category": "non_functional",
+      "priority": "should",
+      "source_section": "S06",
+      "source_quote": "The Company operates two data centres in Malaysia (primary in Cyberjaya, secondary in Johor) and has a limited Microsoft Azure footprint (Southeast Asia region) used today only for email and collaboration tools.",
+      "confidence": 0.8,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-04",
+      "title": "Single document processing time",
+      "description": "Classification and extraction for a single document must complete within 30 seconds.",
+      "category": "non_functional",
+      "priority": "must",
+      "source_section": "S08",
+      "source_quote": "**NFR-1 Performance.** Classification and extraction for a single document should complete within 30 seconds of receipt at the 95th percentile.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-05",
+      "title": "Claim triage and routing availability",
+      "description": "Triage and routing for a complete claim must be available in real time.",
+      "category": "non_functional",
+      "priority": "must",
+      "source_section": "S08",
+      "source_quote": "Triage and routing for a complete claim should be available to the adjuster in real time once all FNOL documents are received.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-06",
+      "title": "Daily claim throughput",
+      "description": "The solution must sustain peak volumes of 2,500 claims per day.",
+      "category": "non_functional",
+      "priority": "must",
+      "source_section": "S08",
+      "source_quote": "**NFR-2 Throughput.** The solution shall sustain peak volumes of 2,500 claims per day (approximately three times the daily average), as experienced during the year-end monsoon flooding season, without degradation beyond the targets in NFR-1.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-07",
+      "title": "Business hour availability",
+      "description": "The production service must achieve 99.5% availability during business hours.",
+      "category": "non_functional",
+      "priority": "must",
+      "source_section": "S08",
+      "source_quote": "**NFR-3 Availability.** The production service shall achieve 99.5% availability during business hours (08:00 to 20:00, Monday to Saturday).",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-08",
+      "title": "Planned maintenance outside business hours",
+      "description": "Planned maintenance must be scheduled outside business hours.",
+      "category": "non_functional",
+      "priority": "must",
+      "source_section": "S08",
+      "source_quote": "Planned maintenance must be scheduled outside these hours.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-09",
+      "title": "Continued claim flow during AI unavailability",
+      "description": "Claims must continue to flow into ClaimsNet using the existing manual process.",
+      "category": "non_functional",
+      "priority": "must",
+      "source_section": "S08",
+      "source_quote": "**NFR-4 Resilience.** If the AI components are unavailable, claims must continue to flow into ClaimsNet using the existing manual process, with no loss of documents.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-10",
+      "title": "Scalability for other lines of business",
+      "description": "The architecture must allow other lines of business to be onboarded by Corvane staff without re-architecture.",
+      "category": "non_functional",
+      "priority": "should",
+      "source_section": "S08",
+      "source_quote": "**NFR-5 Scalability.** The architecture should allow other lines of business and additional document types to be onboarded by Corvane staff without re-architecture.",
+      "confidence": 0.8,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-11",
+      "title": "Adjuster-facing interface accessibility",
+      "description": "Adjuster-facing interfaces must meet WCAG 2.1 AA standards.",
+      "category": "non_functional",
+      "priority": "must",
+      "source_section": "S08",
+      "source_quote": "**NFR-6 Accessibility and usability.** Adjuster-facing interfaces shall meet WCAG 2.1 AA.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-12",
+      "title": "Version control for models and prompts",
+      "description": "All models, prompts, and configuration must be version-controlled.",
+      "category": "non_functional",
+      "priority": "must",
+      "source_section": "S08",
+      "source_quote": "**NFR-7 Maintainability.** All models, prompts and configuration shall be version-controlled, and every production output shall be traceable to the model and configuration version that produced it.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-13",
+      "title": "Delete working copies within 30 days",
+      "description": "Working copies must be deleted within 30 days of claim closure.",
+      "category": "non_functional",
+      "priority": "must",
+      "source_section": "S10.2",
+      "source_quote": "Working copies of documents held by the solution must be deleted within 30 days of claim closure.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-14",
+      "title": "Accommodate SIU investigations",
+      "description": "Solution must accommodate longer document retention for SIU investigations.",
+      "category": "non_functional",
+      "priority": "should",
+      "source_section": "S10.2",
+      "source_quote": "Bidders should note that the same documents may be required for SIU investigations for considerably longer, and the solution design must accommodate this.",
+      "confidence": 0.8,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "NFR-15",
+      "title": "Evaluate model quality",
+      "description": "Bidders must explain how they will evaluate model quality.",
+      "category": "non_functional",
+      "priority": "should",
+      "source_section": "S13",
+      "source_quote": "Bidders should explain how they will evaluate model quality before and after go-live, including how they will measure extraction accuracy, routing accuracy and summary faithfulness, and how they will detect drift once in production.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "SEC-01",
+      "title": "Compliance with PDPA",
+      "description": "Solution must comply with PDPA and other regulations.",
+      "category": "security_compliance",
+      "priority": "must",
+      "source_section": "S10.1",
+      "source_quote": "Corvane is regulated by Bank Negara Malaysia (BNM) and must comply with the Personal Data Protection Act 2010 (PDPA) as amended, BNM's Risk Management in Technology (RMiT) policy, and its own information security standards.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "SEC-02",
+      "title": "Data residency within Malaysia",
+      "description": "Customer data must be stored and processed in Corvane's Malaysian data centres.",
+      "category": "security_compliance",
+      "priority": "must",
+      "source_section": "S10.1",
+      "source_quote": "All customer personal data, claim documents and derived data (including extracted fields, embeddings and model outputs) must be stored and processed within Corvane's own Malaysian data centres.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "SEC-03",
+      "title": "Minimize personal data exposure",
+      "description": "Personal data must be minimally exposed and masked in adjuster-facing summaries.",
+      "category": "security_compliance",
+      "priority": "must",
+      "source_section": "S10.1",
+      "source_quote": "The solution shall minimise exposure of personal data, mask identity card numbers in all adjuster-facing summaries except where explicitly needed, and shall not use personal data for any purpose other than claims handling and the improvement of the claims models.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "SEC-04",
+      "title": "Audit trail logging",
+      "description": "AI outputs, human overrides, and routing decisions must be logged with timestamps and details.",
+      "category": "security_compliance",
+      "priority": "must",
+      "source_section": "S10.1",
+      "source_quote": "Every AI output, every human override, and every routing decision shall be logged with a timestamp, user or system identity, input references and the model version used. Audit logs shall be immutable and retained for seven years.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "SEC-05",
+      "title": "Role-based access control",
+      "description": "Access must be role-based, with specific permissions for SIU staff and claims managers.",
+      "category": "security_compliance",
+      "priority": "must",
+      "source_section": "S10.1",
+      "source_quote": "Access shall be role-based. SIU fraud flags shall be visible only to SIU staff and designated claims managers, not to all adjusters.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "SEC-06",
+      "title": "Annual security testing",
+      "description": "Solution must undergo independent penetration testing annually.",
+      "category": "security_compliance",
+      "priority": "must",
+      "source_section": "S10.1",
+      "source_quote": "The solution shall undergo independent penetration testing before go-live and annually thereafter. Findings rated high or critical must be remediated before go-live.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "SEC-07",
+      "title": "Support model risk management",
+      "description": "Bidder must support Corvane's model risk management process.",
+      "category": "security_compliance",
+      "priority": "must",
+      "source_section": "S10.1",
+      "source_quote": "The bidder shall support Corvane's model risk management process, including documentation of model purpose, training data, known limitations, evaluation results and bias testing across customer segments.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "SEC-08",
+      "title": "Disclose third-party models",
+      "description": "Third-party models must be disclosed, including licensing and hosting details.",
+      "category": "security_compliance",
+      "priority": "must",
+      "source_section": "S10.1",
+      "source_quote": "Where foundation models or large language models are used, the bidder shall disclose the model, its licence, where it is hosted, and confirm that no Corvane data is used to train third-party models.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "SEC-09",
+      "title": "Technical architecture evaluation",
+      "description": "Technical architecture, security and compliance is weighted 25%.",
+      "category": "security_compliance",
+      "priority": "should",
+      "source_section": "S14",
+      "source_quote": "Technical architecture, security and compliance | 25%",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-01",
+      "title": "Use ClaimsNet",
+      "description": "The solution must use ClaimsNet for claims management.",
+      "category": "integration",
+      "priority": "must",
+      "source_section": "S06",
+      "source_quote": "Claims are managed in **ClaimsNet**, an in-house claims management system built on Java and an Oracle 12c database in 2011.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-02",
+      "title": "Limited SOAP web services",
+      "description": "ClaimsNet exposes a limited set of SOAP web services.",
+      "category": "integration",
+      "priority": "must",
+      "source_section": "S06",
+      "source_quote": "ClaimsNet exposes a limited set of SOAP web services; there is no REST API today, and the vendor team that built it has largely moved on.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-03",
+      "title": "Use IBM MQ",
+      "description": "Policy data must be accessed through IBM MQ.",
+      "category": "integration",
+      "priority": "must",
+      "source_section": "S06",
+      "source_quote": "Policy data sits in a mainframe-hosted policy administration system (PAS) that is accessed through a message queue integration layer (IBM MQ).",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-04",
+      "title": "Near real-time read access",
+      "description": "Near real-time read access to policy coverage details is allowed.",
+      "category": "integration",
+      "priority": "must",
+      "source_section": "S06",
+      "source_quote": "Read access to policy coverage details is possible in near real time; write access is not permitted for this project.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-05",
+      "title": "Use DMS",
+      "description": "Documents must be stored in the document management system (DMS).",
+      "category": "integration",
+      "priority": "must",
+      "source_section": "S06",
+      "source_quote": "Documents are stored in a document management system (DMS) on a network file share, with metadata held in ClaimsNet.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-06",
+      "title": "Use Active Directory",
+      "description": "Identity must be managed through on-premise Active Directory.",
+      "category": "integration",
+      "priority": "must",
+      "source_section": "S06",
+      "source_quote": "Identity is managed through on-premise Active Directory. All internal applications must use single sign-on.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-07",
+      "title": "Description of new interfaces",
+      "description": "Bidders must describe how new interfaces will be built and maintained.",
+      "category": "integration",
+      "priority": "should",
+      "source_section": "S09",
+      "source_quote": "Where new interfaces are required, the bidder shall describe how they will be built and who will maintain them.",
+      "confidence": 0.8,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-08",
+      "title": "Prefer not to modify ClaimsNet's core codebase",
+      "description": "Corvane prefers not to modify ClaimsNet's core codebase.",
+      "category": "integration",
+      "priority": "should",
+      "source_section": "S09",
+      "source_quote": "Corvane prefers not to modify ClaimsNet's core codebase; minor additions to its user interface are acceptable if delivered through its plugin framework.",
+      "confidence": 0.8,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-09",
+      "title": "Policy coverage lookups using existing IBM MQ",
+      "description": "Policy coverage lookups must use the existing IBM MQ integration layer.",
+      "category": "integration",
+      "priority": "must",
+      "source_section": "S09",
+      "source_quote": "**INT-2** Policy coverage lookups shall use the existing IBM MQ integration layer.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-10",
+      "title": "No writing to policy administration system",
+      "description": "The solution must not write to the policy administration system.",
+      "category": "integration",
+      "priority": "must",
+      "source_section": "S09",
+      "source_quote": "The solution shall not write to the policy administration system.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-11",
+      "title": "Working copies retention",
+      "description": "Working copies of documents may be held only as needed for processing.",
+      "category": "integration",
+      "priority": "must",
+      "source_section": "S09",
+      "source_quote": "The solution may hold working copies only for as long as needed for processing, subject to the retention rules in section 8.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-12",
+      "title": "User authentication through Active Directory",
+      "description": "Users must be authenticated through Corvane's Active Directory using single sign-on.",
+      "category": "integration",
+      "priority": "must",
+      "source_section": "S09",
+      "source_quote": "**INT-4** The solution shall authenticate users through Corvane's Active Directory using single sign-on.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "INT-13",
+      "title": "Avoid new dependencies on nightly SFTP batch interfaces",
+      "description": "Bidders should avoid designing new dependencies on the nightly SFTP batch interfaces.",
+      "category": "integration",
+      "priority": "should",
+      "source_section": "S09",
+      "source_quote": "The nightly SFTP batch interfaces are expected to be retired within two years. Bidders should avoid designing new dependencies on them.",
+      "confidence": 0.8,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-01",
+      "title": "Understand and maintain solution",
+      "description": "Corvane's data science team must be able to understand, maintain and retrain the solution.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S03",
+      "source_quote": "Corvane's own data science team (currently six people) must be able to understand, maintain and retrain the solution after handover.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-02",
+      "title": "Knowledge transfer and training",
+      "description": "Provide knowledge transfer and training for Corvane's IT, data science and claims teams.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S04",
+      "source_quote": "- Knowledge transfer and training for Corvane's IT, data science and claims teams.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-03",
+      "title": "Assume 16-20 weeks for GPU infrastructure",
+      "description": "Assume 16-20 weeks for GPU infrastructure procurement, delivery and installation.",
+      "category": "commercial",
+      "priority": "could",
+      "source_section": "S11",
+      "source_quote": "Corvane does not currently own GPU infrastructure in either data centre. Our infrastructure team estimates that procurement, delivery and installation of new server hardware typically takes 16 to 20 weeks from purchase order, and capital purchases above MYR 1 million require Board approval at its quarterly meeting. Bidders should describe their assumptions about compute infrastructure clearly.",
+      "confidence": 0.8,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-04",
+      "title": "Budget range",
+      "description": "The budget must be between MYR 6.5 million and MYR 8 million.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S12",
+      "source_quote": "The indicative budget envelope for this workstream is **MYR 6.5 million to MYR 8 million** over the initial contract term (contract award to handover),",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-05",
+      "title": "Discovery and design fixed price",
+      "description": "A fixed price for discovery and design must be provided.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S12",
+      "source_quote": "- A fixed price for discovery and design.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-06",
+      "title": "Pilot fixed or capped price",
+      "description": "A fixed or capped price for the pilot must be provided.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S12",
+      "source_quote": "- A fixed or capped price for the pilot.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-07",
+      "title": "Rollout phases pricing",
+      "description": "Rollout phases can be priced as time-and-materials or fixed price, with rate cards.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S12",
+      "source_quote": "- A time-and-materials or fixed price, at the bidder's option, for the rollout phases, with rate cards.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-08",
+      "title": "Annual licence and support costs",
+      "description": "Annual licence and support costs for five years after handover must be provided.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S12",
+      "source_quote": "- Annual licence and support costs for five years after handover.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-09",
+      "title": "Infrastructure or hardware recommendations",
+      "description": "Recommendations for infrastructure or hardware must be provided, with indicative costs.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S12",
+      "source_quote": "- Any infrastructure or hardware the bidder recommends Corvane procure, with indicative costs, shown separately.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-10",
+      "title": "Milestone-based payment",
+      "description": "Payment must be milestone-based, with at least 15% linked to measurable outcomes.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S12",
+      "source_quote": "Payment will be milestone-based. Corvane expects at least 15% of the services fee to be linked to achievement of measurable outcomes, for example routing accuracy and keying effort reduction, measured after the pilot.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-11",
+      "title": "Intellectual property rights",
+      "description": "All intellectual property in custom work products must vest in Corvane.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S12",
+      "source_quote": "Corvane's standard terms require that all intellectual property in custom work products, including prompts, configurations, fine-tuned model weights and evaluation datasets created specifically for Corvane, vest in Corvane.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-12",
+      "title": "Describe comparable implementations",
+      "description": "Bidders must describe at least two comparable implementations.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S13",
+      "source_quote": "Bidders should describe at least two comparable implementations in insurance or financial services, preferably in Southeast Asia, with client references.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-13",
+      "title": "Delivery lead and solution architect",
+      "description": "A named delivery lead and solution architect must remain on the engagement.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S13",
+      "source_quote": "The proposed team must include a named delivery lead and a named solution architect who will remain on the engagement through at least full motor rollout.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-14",
+      "title": "Blended onshore and offshore team",
+      "description": "A blended onshore and offshore team is required.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S13",
+      "source_quote": "Corvane expects a blended onshore and offshore team; however, any personnel with access to production data must be based in Malaysia and hold appropriate security clearance as determined by Corvane.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-15",
+      "title": "Solution fit evaluation",
+      "description": "Solution fit to functional and non-functional requirements is weighted 30%.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S14",
+      "source_quote": "Solution fit to functional and non-functional requirements | 30%",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-16",
+      "title": "Delivery approach evaluation",
+      "description": "Delivery approach, timeline realism and team is weighted 20%.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S14",
+      "source_quote": "Delivery approach, timeline realism and team | 20%",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-17",
+      "title": "Commercial value evaluation",
+      "description": "Commercial value and total cost of ownership is weighted 15%.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S14",
+      "source_quote": "Commercial value and total cost of ownership | 15%",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-18",
+      "title": "Capability transfer evaluation",
+      "description": "Capability transfer and ongoing support is weighted 10%.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S14",
+      "source_quote": "Capability transfer and ongoing support | 10%",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-19",
+      "title": "Electronic submission",
+      "description": "Proposals must be submitted electronically.",
+      "category": "commercial",
+      "priority": "must",
+      "source_section": "S15",
+      "source_quote": "Proposals must be submitted electronically to the procurement portal by the due date stated above. Late submissions will not be considered.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-20",
+      "title": "Executive summary length",
+      "description": "Executive summary must be no more than two pages.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S15",
+      "source_quote": "Proposals should contain:\n\n1. An executive summary of no more than two pages.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-21",
+      "title": "Requirements compliance matrix",
+      "description": "Compliance matrix must respond to every requirement.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S15",
+      "source_quote": "2. A requirements compliance matrix responding to every FR, NFR, INT and SEC requirement.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-22",
+      "title": "Solution architecture",
+      "description": "Solution architecture must include deployment diagram.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S15",
+      "source_quote": "3. Solution architecture, including a deployment diagram showing where every component runs and where data is stored and processed.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-23",
+      "title": "Delivery plan and milestones",
+      "description": "Delivery plan and milestones must be included.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S15",
+      "source_quote": "4. Delivery plan and milestones, with key assumptions and dependencies on Corvane.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-24",
+      "title": "Team structure and CVs",
+      "description": "Team structure and CVs must be provided.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S15",
+      "source_quote": "5. Team structure and CVs of named personnel.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-25",
+      "title": "Commercial proposal",
+      "description": "Commercial proposal must be in a separate document.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S15",
+      "source_quote": "6. Commercial proposal, in a separate document.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-26",
+      "title": "Risks and mitigations",
+      "description": "Risks and proposed mitigations must be included.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S15",
+      "source_quote": "7. Risks and proposed mitigations.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-27",
+      "title": "Proposal length",
+      "description": "Proposal main body must not exceed 40 pages.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S15",
+      "source_quote": "The main body of the proposal should not exceed 40 pages excluding appendices.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "COM-28",
+      "title": "Clarification questions submission",
+      "description": "Clarification questions must be submitted by 5 February 2027.",
+      "category": "commercial",
+      "priority": "should",
+      "source_section": "S15",
+      "source_quote": "Clarification questions must be submitted in writing through the procurement portal by 5 February 2027; Corvane will publish anonymised answers to all bidders by 12 February 2027.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "TL-01",
+      "title": "Full rollout by 30 September 2027",
+      "description": "Full motor rollout must be completed by 30 September 2027.",
+      "category": "timeline",
+      "priority": "must",
+      "source_section": "S11",
+      "source_quote": "Full motor rollout, all offices | 30 September 2027",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "TL-02",
+      "title": "Home, travel and small-commercial lines live by 31 January 2028",
+      "description": "Home, travel and small-commercial lines must be live by 31 January 2028.",
+      "category": "timeline",
+      "priority": "must",
+      "source_section": "S11",
+      "source_quote": "Home, travel and small-commercial lines live | 31 January 2028",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "TL-03",
+      "title": "Handover to support by 31 March 2028",
+      "description": "Handover to Corvane support must be completed by 31 March 2028.",
+      "category": "timeline",
+      "priority": "must",
+      "source_section": "S11",
+      "source_quote": "Handover to Corvane support | 31 March 2028",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    },
+    {
+      "id": "TL-04",
+      "title": "Pilot go-live fixed",
+      "description": "Pilot go-live date is fixed at 30 June 2027.",
+      "category": "timeline",
+      "priority": "must",
+      "source_section": "S11",
+      "source_quote": "The pilot go-live date of 30 June 2027 is fixed and is linked to a commitment made to the Board. Bidders proposing a later pilot date will need to provide an exceptionally strong justification.",
+      "confidence": 1.0,
+      "quote_match_score": 100.0
+    }
+  ],
+  "approach": [
+    {
+      "requirement_ids": [
+        "FR-01",
+        "FR-02",
+        "FR-05",
+        "FR-06",
+        "FR-07",
+        "FR-08",
+        "FR-10",
+        "FR-11",
+        "FR-12",
+        "FR-13",
+        "FR-14",
+        "FR-15",
+        "FR-16",
+        "FR-17",
+        "FR-18",
+        "FR-19",
+        "FR-20",
+        "FR-21",
+        "FR-22",
+        "NFR-01",
+        "NFR-04",
+        "NFR-05",
+        "NFR-06",
+        "NFR-07",
+        "NFR-08",
+        "NFR-09",
+        "NFR-11",
+        "NFR-12",
+        "NFR-13",
+        "SEC-01",
+        "SEC-02",
+        "SEC-03",
+        "SEC-04",
+        "SEC-05",
+        "SEC-06",
+        "SEC-07",
+        "SEC-08",
+        "INT-01",
+        "INT-02",
+        "INT-03",
+        "INT-04",
+        "INT-05",
+        "INT-06",
+        "INT-09",
+        "INT-10",
+        "INT-11",
+        "INT-12",
+        "COM-01",
+        "COM-02",
+        "COM-04",
+        "COM-05",
+        "COM-06",
+        "COM-07",
+        "COM-08",
+        "COM-09",
+        "COM-10",
+        "COM-11",
+        "COM-19",
+        "TL-01",
+        "TL-02",
+        "TL-03",
+        "TL-04"
+      ],
+      "summary": "Develop a claims processing platform that integrates with ClaimsNet, DMS, and Active Directory, ensuring no core codebase modifications.",
+      "components": [
+        "ClaimsNet SOAP adapter",
+        "Document management system (DMS) integration",
+        "Active Directory authentication",
+        "AI processing engine",
+        "Triage and routing system",
+        "Fraud detection module",
+        "Claim summary generator",
+        "Data extraction service",
+        "Low-quality document handling",
+        "User interface",
+        "Audit logging",
+        "Version control system",
+        "Model risk management tool",
+        "Security compliance module",
+        "Monitoring and evaluation dashboard",
+        "Legacy integration interfaces",
+        "User training and support",
+        "Milestone-based payment structure",
+        "Commercial support and maintenance plan",
+        "Blended onshore and offshore team",
+        "Solution fit evaluation",
+        "Commercial value assessment",
+        "Risk management plan",
+        "Electronic submission process",
+        "Compliance with PDPA and data residency",
+        "Near real-time policy coverage lookup",
+        "Document classification and data extraction",
+        "Claim triage and routing",
+        "Fraud indicator flagging",
+        "Adjuster-facing AI outputs",
+        "Missing information requests",
+        "Operational dashboards",
+        "Claim summary generation",
+        "Claim document handling",
+        "User authentication through Active Directory",
+        "Audit trail logging",
+        "Role-based access control",
+        "Annual security testing",
+        "Support for model risk management",
+        "Disclosure of third-party models",
+        "Technical architecture evaluation",
+        "Support for SIU investigations",
+        "Model quality evaluation",
+        "Compliance with WCAG 2.1 AA",
+        "Scalability for other lines of business",
+        "Version control for models and prompts",
+        "Delete working copies within 30 days",
+        "Claim triage and routing availability",
+        "Daily claim throughput",
+        "Business hour availability",
+        "Planned maintenance outside business hours",
+        "Continued claim flow during AI unavailability",
+        "Pilot and rollout phases pricing",
+        "Annual licence and support costs",
+        "Infrastructure recommendations",
+        "Discovery and design fixed price",
+        "Pilot fixed or capped price",
+        "Electronic submission",
+        "Knowledge transfer and training",
+        "Commercial proposal",
+        "Risks and mitigations",
+        "Solution architecture",
+        "Delivery plan and milestones",
+        "Team structure and CVs",
+        "Clarification questions submission",
+        "Full rollout by 30 September 2027",
+        "Home, travel and small-commercial lines live by 31 January 2028",
+        "Handover to support by 31 March 2028",
+        "Pilot go-live fixed price"
+      ],
+      "rationale": "This approach respects the constraints and ensures compliance with the client's requirements."
+    },
+    {
+      "requirement_ids": [
+        "FR-03"
+      ],
+      "summary": "Provide a concise claim summary for adjusters.",
+      "components": [
+        "Claim summary generator",
+        "Natural language processing (NLP) engine",
+        "Data aggregation service"
+      ],
+      "rationale": "This feature will help adjusters quickly understand the claim context and make informed decisions."
+    },
+    {
+      "requirement_ids": [
+        "FR-04"
+      ],
+      "summary": "Implement a fraud detection system that flags potential fraud cases.",
+      "components": [
+        "Fraud detection module",
+        "Machine learning model",
+        "Rule-based engine"
+      ],
+      "rationale": "This system will help in early detection and prevention of fraudulent claims."
+    },
+    {
+      "requirement_ids": [
+        "FR-15"
+      ],
+      "summary": "Generate a claim summary to provide a quick overview to adjusters.",
+      "components": [
+        "Claim summary generator",
+        "NLP engine",
+        "Data aggregation service"
+      ],
+      "rationale": "This will streamline the claims processing workflow and improve adjuster efficiency."
+    },
+    {
+      "requirement_ids": [
+        "FR-16",
+        "FR-17"
+      ],
+      "summary": "Triage and route claims based on predefined criteria and flag potential fraud cases.",
+      "components": [
+        "Triage and routing system",
+        "Fraud detection module",
+        "Rule-based engine"
+      ],
+      "rationale": "This ensures efficient claim handling and early fraud detection."
+    },
+    {
+      "requirement_ids": [
+        "FR-18"
+      ],
+      "summary": "Ensure that no claims are automatically declined without human review.",
+      "components": [
+        "Claim review system",
+        "Human review interface"
+      ],
+      "rationale": "This prevents unjustified claim rejections and maintains customer trust."
+    },
+    {
+      "requirement_ids": [
+        "FR-19"
+      ],
+      "summary": "Provide a human review interface for claims.",
+      "components": [
+        "Human review interface",
+        "Claim review system"
+      ],
+      "rationale": "This ensures that all claims are reviewed by a human before final processing."
+    },
+    {
+      "requirement_ids": [
+        "FR-20"
+      ],
+      "summary": "Capture corrections for model improvement during the review process.",
+      "components": [
+        "Correction capture system",
+        "Model training pipeline"
+      ],
+      "rationale": "This will continuously improve the AI models and their accuracy."
+    },
+    {
+      "requirement_ids": [
+        "FR-21"
+      ],
+      "summary": "Request missing information from claimants when necessary.",
+      "components": [
+        "Missing information request system",
+        "Claimant communication module"
+      ],
+      "rationale": "This ensures that all claims have the necessary information for processing."
+    },
+    {
+      "requirement_ids": [
+        "FR-22"
+      ],
+      "summary": "Provide operational dashboards for monitoring claim processing and AI performance.",
+      "components": [
+        "Operational dashboards",
+        "Performance monitoring system"
+      ],
+      "rationale": "This will help in real-time monitoring and performance optimization."
+    },
+    {
+      "requirement_ids": [
+        "SEC-01",
+        "SEC-02",
+        "SEC-03",
+        "SEC-04",
+        "SEC-05",
+        "SEC-06",
+        "SEC-07",
+        "SEC-08"
+      ],
+      "summary": "Ensure compliance with PDPA, data residency, and other security and compliance requirements.",
+      "components": [
+        "Data residency enforcement",
+        "PDPA compliance module",
+        "Audit logging",
+        "Role-based access control",
+        "Annual security testing",
+        "Model risk management tool",
+        "Third-party model disclosure"
+      ],
+      "rationale": "This will protect sensitive data and ensure legal and regulatory compliance."
+    },
+    {
+      "requirement_ids": [
+        "INT-01",
+        "INT-02",
+        "INT-03",
+        "INT-04",
+        "INT-05",
+        "INT-06",
+        "INT-09",
+        "INT-10",
+        "INT-11",
+        "INT-12"
+      ],
+      "summary": "Integrate with ClaimsNet, DMS, IBM MQ, Active Directory, and other legacy systems without modifying core codebases.",
+      "components": [
+        "ClaimsNet SOAP adapter",
+        "DMS integration",
+        "IBM MQ integration",
+        "Active Directory authentication",
+        "Legacy system interfaces"
+      ],
+      "rationale": "This approach respects the client's constraints and ensures seamless integration."
+    },
+    {
+      "requirement_ids": [
+        "COM-01",
+        "COM-02",
+        "COM-04",
+        "COM-05",
+        "COM-06",
+        "COM-07",
+        "COM-08",
+        "COM-09",
+        "COM-10",
+        "COM-11",
+        "COM-19"
+      ],
+      "summary": "Ensure the solution is maintainable, scalable, and can be supported over the long term.",
+      "components": [
+        "Version control system",
+        "Model training pipeline",
+        "Support and maintenance plan",
+        "Infrastructure recommendations",
+        "Discovery and design fixed price",
+        "Pilot fixed or capped price",
+        "Rollout phases pricing",
+        "Annual licence and support costs",
+        "Milestone-based payment structure",
+        "Electronic submission process"
+      ],
+      "rationale": "This will ensure the solution remains relevant and effective over time."
+    },
+    {
+      "requirement_ids": [
+        "TL-01",
+        "TL-02",
+        "TL-03",
+        "TL-04"
+      ],
+      "summary": "Deliver the solution by the specified timelines and phases.",
+      "components": [
+        "Project management plan",
+        "Milestone-based delivery",
+        "Pilot and rollout phases",
+        "Handover to support"
+      ],
+      "rationale": "This will ensure the project is completed on time and within the defined phases."
+    }
+  ],
+  "risks": [
+    {
+      "id": "R-01",
+      "title": "Fixed pilot date conflicts with hardware procurement timeline",
+      "description": "The fixed pilot go-live date of 30 June 2027 conflicts with the 16-20 week hardware procurement timeline, which may not be completed by the required date.",
+      "category": "requirement_conflict",
+      "likelihood": "high",
+      "impact": "high",
+      "mitigation": "Agree an interim hosting option for the pilot, or re-baseline the date at contract award.",
+      "related_requirement_ids": [
+        "TL-01",
+        "INT-11"
+      ],
+      "source_quote": null
+    },
+    {
+      "id": "R-02",
+      "title": "Ambiguity in 'near real-time' data processing",
+      "description": "The requirement for near real-time data processing is vague and could lead to disputes over what constitutes 'near real-time'.",
+      "category": "ambiguity",
+      "likelihood": "medium",
+      "impact": "medium",
+      "mitigation": "Clarify the definition of 'near real-time' with the client and document the agreed definition in the contract.",
+      "related_requirement_ids": [
+        "INT-04"
+      ],
+      "source_quote": null
+    },
+    {
+      "id": "R-03",
+      "title": "Security compliance with PDPA and data residency",
+      "description": "Ensuring compliance with PDPA and data residency within Malaysia while minimizing personal data exposure is complex and may introduce significant risks.",
+      "category": "security_compliance",
+      "likelihood": "high",
+      "impact": "high",
+      "mitigation": "Conduct a detailed data protection impact assessment and ensure regular audits to maintain compliance.",
+      "related_requirement_ids": [
+        "SEC-02",
+        "SEC-03",
+        "SEC-04"
+      ],
+      "source_quote": null
+    },
+    {
+      "id": "R-04",
+      "title": "Risk of late hardware procurement",
+      "description": "The risk of late hardware procurement could delay the pilot and full rollout, impacting the project timeline.",
+      "category": "delivery",
+      "likelihood": "high",
+      "impact": "high",
+      "mitigation": "Develop a contingency plan for hardware procurement and include it in the risk management plan.",
+      "related_requirement_ids": [
+        "INT-11"
+      ],
+      "source_quote": null
+    },
+    {
+      "id": "R-05",
+      "title": "Ambiguity in 'should' requirements",
+      "description": "The 'should' requirements, such as supporting Bahasa Malaysia and Chinese document support, are not clearly defined and could lead to disputes.",
+      "category": "ambiguity",
+      "likelihood": "medium",
+      "impact": "medium",
+      "mitigation": "Clarify the scope and expected outcomes of these requirements with the client.",
+      "related_requirement_ids": [
+        "FR-24",
+        "FR-25"
+      ],
+      "source_quote": null
+    },
+    {
+      "id": "R-06",
+      "title": "Risk of exceeding budget",
+      "description": "The budget range of MYR 6.5 million to MYR 8 million may be underestimated, and the risk of exceeding this budget is high.",
+      "category": "commercial",
+      "likelihood": "medium",
+      "impact": "high",
+      "mitigation": "Perform a detailed cost analysis and include a contingency reserve in the budget.",
+      "related_requirement_ids": [
+        "COM-04"
+      ],
+      "source_quote": null
+    }
+  ],
+  "assumptions": [
+    {
+      "statement": "ClaimsNet's core codebase will not be modified.",
+      "rationale": "The client has explicitly stated that no core codebase modifications are allowed."
+    },
+    {
+      "statement": "The solution will leverage existing interfaces and avoid new dependencies on nightly SFTP batch interfaces.",
+      "rationale": "This minimizes the risk and complexity of the solution."
+    },
+    {
+      "statement": "The solution will be designed to handle low-quality documents efficiently.",
+      "rationale": "This ensures the system can process a wide range of document types and quality levels."
+    },
+    {
+      "statement": "The solution will be version-controlled and traceable to ensure maintainability and compliance with regulatory requirements.",
+      "rationale": "This will facilitate model updates and ensure compliance with data protection regulations."
+    },
+    {
+      "statement": "The solution will be scalable to accommodate other lines of business and additional document types.",
+      "rationale": "This ensures the solution can be extended to support future business needs."
+    }
+  ],
+  "open_questions": [
+    {
+      "question": "What is the target time for claim assignment to the correct adjuster?",
+      "reason": "The current time of 3.8 working days is stated, but no target is given.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the expected reduction in document re-keying time?",
+      "reason": "The current 40% time spent on re-keying is mentioned, but no target is provided.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the desired customer satisfaction target?",
+      "reason": "The current 64% satisfaction is stated, but no target is given.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the definition of 'straightforward claims'?",
+      "reason": "The term is used in the FNOL to adjuster assignment time requirement but is not defined.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the target report generation time?",
+      "reason": "The current pain is stated but no target time is provided.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What are the specific lodgement channels?",
+      "reason": "The number of lodgement channels is mentioned but not specified.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the exact scope of 'knowledge transfer and training'?",
+      "reason": "The requirement mentions knowledge transfer and training but does not specify the content or depth.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What specific data protection constraints apply to the use of historical claim documents?",
+      "reason": "The text mentions data protection constraints but does not specify what they are.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the taxonomy of document types?",
+      "reason": "The number of document types is mentioned but not the specific types.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What specific metrics should the dashboards cover?",
+      "reason": "The RFP mentions specific metrics but does not provide exact details.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the exact process for handling missing documents?",
+      "reason": "The RFP mentions drafting requests but does not specify the exact process.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the target model and configuration version traceability?",
+      "reason": "The requirement states that outputs must be traceable to the model and configuration version, but does not specify the level of detail or method of traceability.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the process for obtaining prior approval for using public cloud services?",
+      "reason": "The RFP mentions a typical six to nine-month process, but no detailed steps or documentation are provided.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the justification for the fixed pilot go-live date?",
+      "reason": "The RFP states that a later date requires exceptionally strong justification, but no specific justification is provided.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What are the specific measurable outcomes for the payment milestones?",
+      "reason": "The RFP mentions measurable outcomes but does not specify what they are.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the exact definition of 'comparable implementations'?",
+      "reason": "The term 'comparable implementations' is not defined.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the exact definition of 'full motor rollout'?",
+      "reason": "The term 'full motor rollout' is not defined.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the exact definition of 'drift' in the context of model quality evaluation?",
+      "reason": "The term 'drift' is not defined.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the exact definition of 'extraction accuracy', 'routing accuracy', and 'summary faithfulness'?",
+      "reason": "The terms 'extraction accuracy', 'routing accuracy', and 'summary faithfulness' are not defined.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the exact definition of 'pilot' in the context of document support?",
+      "reason": "The term 'pilot' is not defined.",
+      "related_requirement_ids": [],
+      "raised_by": "extract_requirements"
+    },
+    {
+      "question": "What is the exact definition of 'near real-time' data processing?",
+      "reason": "To avoid disputes and ensure clear expectations.",
+      "related_requirement_ids": [],
+      "raised_by": "analyze_risks"
+    },
+    {
+      "question": "What are the specific requirements for supporting Bahasa Malaysia and Chinese document support?",
+      "reason": "To clarify the scope and expected outcomes.",
+      "related_requirement_ids": [],
+      "raised_by": "analyze_risks"
+    }
+  ],
+  "metadata": {
+    "run_id": "live2",
+    "input_file": "inputs/rfp_synthetic_main.md",
+    "model": "qwen2.5:7b",
+    "embed_model": "nomic-embed-text",
+    "prompt_versions": {
+      "extract_requirements": "1.1.0",
+      "design_approach": "1.0.0",
+      "analyze_risks": "1.0.0",
+      "critic": "1.0.0",
+      "executive_summary": "1.0.0"
+    },
+    "started_at": "2026-11-21T18:16:34.096531Z",
+    "finished_at": "2026-11-21T19:29:21.203504Z",
+    "revisions": 2,
+    "critic_passed": true,
+    "critic_history": [
+      {
+        "passed": false,
+        "issues": [
+          {
+            "severity": "high",
+            "target_node": "extract_requirements",
+            "feedback": "RFP requirement FR-7 (section S07.1) was not extracted.",
+            "related_ids": [],
+            "check": "numbered_coverage",
+            "section_id": "S07.1",
+            "passage": "**FR-7 Fraud indicators.** The solution shall identify potential fraud indicators (for example, inconsistent dates, duplicate invoices across claims, altered documents) and refer flagged claims to SIU with an explanation. The solution must never automatically decline or close a claim."
+          },
+          {
+            "severity": "medium",
+            "target_node": "extract_requirements",
+            "feedback": "FR-03 and FR-04 are both categorized as 'should' but seem to be closely related. Consider prioritizing one over the other or clarifying their distinct importance.",
+            "related_ids": [
+              "FR-03",
+              "FR-04"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "medium",
+            "target_node": "design_approach",
+            "feedback": "The approach mentions integrating with ClaimsNet, IBM MQ, DMS, and Active Directory, but does not explicitly state that no modifications to ClaimsNet's core codebase will be made, which is a stated constraint (INT-08).",
+            "related_ids": [
+              "INT-08"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "low",
+            "target_node": "analyze_risks",
+            "feedback": "There are multiple risks related to the 'explain routing decisions' requirement (FR-21) that are not addressed in the risk register. Consider adding these to the risk register for better clarity.",
+            "related_ids": [
+              "FR-21"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "medium",
+            "target_node": "extract_requirements",
+            "feedback": "FR-22 and FR-23 are both marked as 'could' but seem to be redundant. Consider removing one of them or clarifying their distinct importance.",
+            "related_ids": [
+              "FR-22",
+              "FR-23"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "medium",
+            "target_node": "analyze_risks",
+            "feedback": "There is a potential tension between the requirement to minimize personal data exposure (NFR-03) and the requirement to retain working copies (NFR-13). This tension is not addressed in the risk register. Consider adding this to the risk register.",
+            "related_ids": [
+              "NFR-03",
+              "NFR-13"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          }
+        ],
+        "revision": 0
+      },
+      {
+        "passed": false,
+        "issues": [
+          {
+            "severity": "high",
+            "target_node": "design_approach",
+            "feedback": "No approach items produced.",
+            "related_ids": [],
+            "check": "must_coverage",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "medium",
+            "target_node": "extract_requirements",
+            "feedback": "FR-12 and FR-13 are redundant as they both cover document classification and data extraction. Consider consolidating these into a single requirement.",
+            "related_ids": [
+              "FR-12",
+              "FR-13"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "medium",
+            "target_node": "extract_requirements",
+            "feedback": "FR-16 and FR-17 are essentially the same, with slight variations. Consider consolidating them into a single requirement to avoid redundancy.",
+            "related_ids": [
+              "FR-16",
+              "FR-17"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "medium",
+            "target_node": "design_approach",
+            "feedback": "The approach proposes modifying ClaimsNet's core codebase, which violates the constraint in INT-08. Clarify that the solution will not modify the core codebase of ClaimsNet.",
+            "related_ids": [
+              "INT-08"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "medium",
+            "target_node": "analyze_risks",
+            "feedback": "There is a tension between the requirement for a fixed pilot date (TL-01) and the risk of late hardware procurement (R-04). This should be explicitly addressed in the risk register.",
+            "related_ids": [
+              "TL-01",
+              "R-04"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "low",
+            "target_node": "analyze_risks",
+            "feedback": "R-05 mentions ambiguity in 'should' requirements but does not specify which 'should' requirements are ambiguous. Provide more detail to make this risk actionable.",
+            "related_ids": [
+              "FR-24",
+              "FR-25"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          }
+        ],
+        "revision": 1
+      },
+      {
+        "passed": true,
+        "issues": [
+          {
+            "severity": "medium",
+            "target_node": "extract_requirements",
+            "feedback": "FR-03 and FR-15 are redundant as they both describe the same functionality of generating a claim summary. Consider consolidating these into a single requirement.",
+            "related_ids": [
+              "FR-03",
+              "FR-15"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "medium",
+            "target_node": "design_approach",
+            "feedback": "The approach for FR-18 (Ensure that no claims are automatically declined without human review) violates the constraint in INT-10 (No writing to policy administration system) by potentially requiring interaction with the policy administration system during the review process.",
+            "related_ids": [
+              "FR-18",
+              "INT-10"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "medium",
+            "target_node": "analyze_risks",
+            "feedback": "There is a tension between the requirement to provide near real-time policy coverage lookups (INT-09) and the constraint of no writing to the policy administration system (INT-10). This risk is not captured in the risk register.",
+            "related_ids": [
+              "INT-09",
+              "INT-10"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "low",
+            "target_node": "extract_requirements",
+            "feedback": "FR-24 and FR-25 are marked as 'could' but are listed under 'must' priority. Consider adjusting the priority or category to match the actual intent.",
+            "related_ids": [
+              "FR-24",
+              "FR-25"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          },
+          {
+            "severity": "low",
+            "target_node": "analyze_risks",
+            "feedback": "R-05 mentions ambiguity in 'should' requirements but does not specify which 'should' requirements are ambiguous. This feedback should be more specific.",
+            "related_ids": [
+              "R-05"
+            ],
+            "check": "llm_review",
+            "section_id": null,
+            "passage": null
+          }
+        ],
+        "revision": 2
+      }
+    ],
+    "dropped_requirements": [],
+    "warnings": [
+      "architect step failed: [design_approach] output cut off at 2048 tokens",
+      "architect did not return a final approach"
+    ],
+    "usage": {
+      "calls": 46.0,
+      "prompt_tokens": 53539.0,
+      "completion_tokens": 20214.0,
+      "latency_ms": 4364890.6,
+      "retries": 0.0,
+      "errors": 1.0,
+      "cost_usd": 0.0
+    }
+  }
+}

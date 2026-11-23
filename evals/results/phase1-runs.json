@@ -1,0 +1,1431 @@
+{
+  "gold": "inputs/rfp_synthetic_main.md",
+  "gold_status": "draft",
+  "runs": [
+    {
+      "run": "sample",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 94,
+        "recall_core": 0.825,
+        "recall_must": 0.826,
+        "recall_core_lenient": 0.93,
+        "precision": 0.777,
+        "distinct_precision": 0.766,
+        "false_positives": 21,
+        "splits": 1,
+        "priority_acc": 0.872,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 2,
+        "trap_checks_total": 7,
+        "trap_risks_found": 2,
+        "trap_risks_linked": 1,
+        "expected_risks_found": 1,
+        "risks": 6,
+        "approach_items": 14,
+        "approach_must_coverage": 1.0,
+        "open_questions": 22,
+        "critic_passed": 1,
+        "revisions": 2,
+        "wall_min": 72.8,
+        "llm_calls": 46,
+        "prompt_tokens": 53539,
+        "completion_tokens": 20214,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.0.0, critic=1.0.0, design_approach=1.0.0, executive_summary=1.0.0, extract_requirements=1.1.0"
+      },
+      "missed_core": [
+        "COM-RUN",
+        "FR-5b",
+        "FR-UI",
+        "INT-1a",
+        "INT-3a",
+        "LANG-ZH",
+        "SEC-3b",
+        "SEC-4a",
+        "SEC-5b",
+        "TEAM-MY"
+      ],
+      "false_positives": [
+        {
+          "id": "NFR-02",
+          "title": "Historical claim documents",
+          "quote": "Roughly 9 TB of historical claim documents exist, of which approximately 2.1 million docum"
+        },
+        {
+          "id": "NFR-03",
+          "title": "Two data centres",
+          "quote": "The Company operates two data centres in Malaysia (primary in Cyberjaya, secondary in Joho"
+        },
+        {
+          "id": "SEC-09",
+          "title": "Technical architecture evaluation",
+          "quote": "Technical architecture, security and compliance | 25%"
+        },
+        {
+          "id": "INT-01",
+          "title": "Use ClaimsNet",
+          "quote": "Claims are managed in **ClaimsNet**, an in-house claims management system built on Java an"
+        },
+        {
+          "id": "INT-02",
+          "title": "Limited SOAP web services",
+          "quote": "ClaimsNet exposes a limited set of SOAP web services; there is no REST API today, and the "
+        },
+        {
+          "id": "INT-03",
+          "title": "Use IBM MQ",
+          "quote": "Policy data sits in a mainframe-hosted policy administration system (PAS) that is accessed"
+        },
+        {
+          "id": "INT-05",
+          "title": "Use DMS",
+          "quote": "Documents are stored in a document management system (DMS) on a network file share, with m"
+        },
+        {
+          "id": "COM-15",
+          "title": "Solution fit evaluation",
+          "quote": "Solution fit to functional and non-functional requirements | 30%"
+        },
+        {
+          "id": "COM-16",
+          "title": "Delivery approach evaluation",
+          "quote": "Delivery approach, timeline realism and team | 20%"
+        },
+        {
+          "id": "COM-17",
+          "title": "Commercial value evaluation",
+          "quote": "Commercial value and total cost of ownership | 15%"
+        },
+        {
+          "id": "COM-18",
+          "title": "Capability transfer evaluation",
+          "quote": "Capability transfer and ongoing support | 10%"
+        },
+        {
+          "id": "COM-19",
+          "title": "Electronic submission",
+          "quote": "Proposals must be submitted electronically to the procurement portal by the due date state"
+        },
+        {
+          "id": "COM-20",
+          "title": "Executive summary length",
+          "quote": "Proposals should contain:\n\n1. An executive summary of no more than two pages."
+        },
+        {
+          "id": "COM-21",
+          "title": "Requirements compliance matrix",
+          "quote": "2. A requirements compliance matrix responding to every FR, NFR, INT and SEC requirement."
+        },
+        {
+          "id": "COM-22",
+          "title": "Solution architecture",
+          "quote": "3. Solution architecture, including a deployment diagram showing where every component run"
+        },
+        {
+          "id": "COM-23",
+          "title": "Delivery plan and milestones",
+          "quote": "4. Delivery plan and milestones, with key assumptions and dependencies on Corvane."
+        },
+        {
+          "id": "COM-24",
+          "title": "Team structure and CVs",
+          "quote": "5. Team structure and CVs of named personnel."
+        },
+        {
+          "id": "COM-25",
+          "title": "Commercial proposal",
+          "quote": "6. Commercial proposal, in a separate document."
+        },
+        {
+          "id": "COM-26",
+          "title": "Risks and mitigations",
+          "quote": "7. Risks and proposed mitigations."
+        },
+        {
+          "id": "COM-27",
+          "title": "Proposal length",
+          "quote": "The main body of the proposal should not exceed 40 pages excluding appendices."
+        },
+        {
+          "id": "COM-28",
+          "title": "Clarification questions submission",
+          "quote": "Clarification questions must be submitted in writing through the procurement portal by 5 F"
+        }
+      ],
+      "split_groups": {
+        "LANG-BM": [
+          "FR-24",
+          "FR-25"
+        ]
+      },
+      "wrong_priority": [
+        {
+          "gold": "FR-9",
+          "pred": "FR-21",
+          "expected": "should",
+          "got": "must"
+        },
+        {
+          "gold": "LANG-BM",
+          "pred": "FR-24",
+          "expected": "should",
+          "got": "could"
+        },
+        {
+          "gold": "NFR-1a",
+          "pred": "NFR-04",
+          "expected": "should",
+          "got": "must"
+        },
+        {
+          "gold": "NFR-1b",
+          "pred": "NFR-05",
+          "expected": "should",
+          "got": "must"
+        },
+        {
+          "gold": "SEC-SIU",
+          "pred": "NFR-14",
+          "expected": "must",
+          "got": "should"
+        },
+        {
+          "gold": "TEAM-NAMED",
+          "pred": "COM-13",
+          "expected": "must",
+          "got": "should"
+        }
+      ],
+      "traps": {
+        "priority:LANG-ZH": {
+          "passed": false,
+          "expected": "could",
+          "got": "missing"
+        },
+        "priority:LANG-BM": {
+          "passed": false,
+          "expected": "should",
+          "got": [
+            "could"
+          ]
+        },
+        "buried:FR-UI": {
+          "passed": false
+        },
+        "buried:FR-EXPLAIN": {
+          "passed": true
+        },
+        "risk:TRAP-TIMELINE": {
+          "passed": false,
+          "kind": "trap",
+          "found": true,
+          "linked": false,
+          "in": [
+            "R-01",
+            "R-04"
+          ]
+        },
+        "risk:TRAP-RETENTION": {
+          "passed": false,
+          "kind": "trap",
+          "found": false,
+          "linked": false,
+          "in": []
+        },
+        "risk:TRAP-REALTIME": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02",
+            "Q21"
+          ]
+        }
+      },
+      "hit_core": [
+        "CAP-1",
+        "COM-BUDGET",
+        "COM-IP",
+        "COM-OUTCOME",
+        "EVAL-1",
+        "FR-1",
+        "FR-10",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5a",
+        "FR-6",
+        "FR-7a",
+        "FR-7b",
+        "FR-8a",
+        "FR-8b",
+        "FR-9",
+        "FR-EXPLAIN",
+        "INT-1c",
+        "INT-2a",
+        "INT-2b",
+        "INT-3b",
+        "INT-4",
+        "INT-SFTP",
+        "LANG-BM",
+        "NFR-1a",
+        "NFR-1b",
+        "NFR-2",
+        "NFR-3a",
+        "NFR-3b",
+        "NFR-4",
+        "NFR-5",
+        "NFR-6",
+        "NFR-7",
+        "SCOPE-7",
+        "SEC-1",
+        "SEC-2",
+        "SEC-3a",
+        "SEC-4b",
+        "SEC-5a",
+        "SEC-6",
+        "SEC-7",
+        "SEC-DEL",
+        "SEC-REG",
+        "SEC-SIU",
+        "TEAM-NAMED",
+        "TL-PILOT"
+      ],
+      "error": null
+    },
+    {
+      "run": "live5",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 94,
+        "recall_core": 0.825,
+        "recall_must": 0.804,
+        "recall_core_lenient": 0.947,
+        "precision": 0.819,
+        "distinct_precision": 0.787,
+        "false_positives": 17,
+        "splits": 3,
+        "priority_acc": 0.957,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 7,
+        "trap_checks_passed": 5,
+        "trap_checks_total": 7,
+        "trap_risks_found": 2,
+        "trap_risks_linked": 1,
+        "expected_risks_found": 1,
+        "risks": 5,
+        "approach_items": 26,
+        "approach_must_coverage": 0.746,
+        "open_questions": 24,
+        "critic_passed": 0,
+        "revisions": 2,
+        "wall_min": 19.2,
+        "llm_calls": 50,
+        "prompt_tokens": 89613,
+        "completion_tokens": 26082,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.0.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.3.0"
+      },
+      "missed_core": [
+        "COM-RUN",
+        "FR-5b",
+        "FR-7b",
+        "INT-3b",
+        "NFR-3b",
+        "SEC-3a",
+        "SEC-4a",
+        "SEC-5b",
+        "SEC-REG",
+        "TEAM-MY"
+      ],
+      "false_positives": [
+        {
+          "id": "NFR-03",
+          "title": "Store documents on network file share",
+          "quote": "Documents are stored in a document management system (DMS) on a network file share, with m"
+        },
+        {
+          "id": "NFR-04",
+          "title": "Historical claim documents storage",
+          "quote": "Roughly 9 TB of historical claim documents exist, of which approximately 2.1 million docum"
+        },
+        {
+          "id": "NFR-07",
+          "title": "Two data centres in Malaysia",
+          "quote": "The Company operates two data centres in Malaysia (primary in Cyberjaya, secondary in Joho"
+        },
+        {
+          "id": "NFR-08",
+          "title": "Limited use of Microsoft Azure",
+          "quote": "The Company operates two data centres in Malaysia (primary in Cyberjaya, secondary in Joho"
+        },
+        {
+          "id": "NFR-20",
+          "title": "Executive summary length",
+          "quote": "Proposals should contain:\n\n1. An executive summary of no more than two pages."
+        },
+        {
+          "id": "NFR-21",
+          "title": "Proposal length limit",
+          "quote": "The main body of the proposal should not exceed 40 pages excluding appendices."
+        },
+        {
+          "id": "SEC-08",
+          "title": "Technical architecture evaluation",
+          "quote": "| Technical architecture, security and compliance | 25% |"
+        },
+        {
+          "id": "INT-01",
+          "title": "Use ClaimsNet",
+          "quote": "Claims are managed in **ClaimsNet**, an in-house claims management system built on Java an"
+        },
+        {
+          "id": "INT-02",
+          "title": "No REST API",
+          "quote": "ClaimsNet exposes a limited set of SOAP web services; there is no REST API today, and the "
+        },
+        {
+          "id": "INT-03",
+          "title": "Use IBM MQ for PAS",
+          "quote": "Policy data sits in a mainframe-hosted policy administration system (PAS) that is accessed"
+        },
+        {
+          "id": "COM-18",
+          "title": "Solution fit evaluation",
+          "quote": "| Solution fit to functional and non-functional requirements | 30% |"
+        },
+        {
+          "id": "COM-19",
+          "title": "Delivery approach evaluation",
+          "quote": "| Delivery approach, timeline realism and team | 20% |"
+        },
+        {
+          "id": "COM-20",
+          "title": "Commercial value evaluation",
+          "quote": "| Commercial value and total cost of ownership | 15% |"
+        },
+        {
+          "id": "COM-21",
+          "title": "Capability transfer evaluation",
+          "quote": "| Capability transfer and ongoing support | 10% |"
+        },
+        {
+          "id": "COM-22",
+          "title": "Electronic submission",
+          "quote": "Proposals must be submitted electronically to the procurement portal by the due date state"
+        },
+        {
+          "id": "COM-23",
+          "title": "Due date for submission",
+          "quote": "Proposals must be submitted electronically to the procurement portal by the due date state"
+        },
+        {
+          "id": "COM-24",
+          "title": "Clarification questions submission",
+          "quote": "Clarification questions must be submitted in writing through the procurement portal by 5 F"
+        }
+      ],
+      "split_groups": {
+        "FR-8a": [
+          "FR-18",
+          "FR-19",
+          "FR-20"
+        ],
+        "ENV-2": [
+          "NFR-05",
+          "NFR-06"
+        ]
+      },
+      "wrong_priority": [
+        {
+          "gold": "FR-9",
+          "pred": "FR-22",
+          "expected": "should",
+          "got": "must"
+        },
+        {
+          "gold": "SEC-SIU",
+          "pred": "NFR-18",
+          "expected": "must",
+          "got": "should"
+        }
+      ],
+      "traps": {
+        "priority:LANG-ZH": {
+          "passed": true,
+          "expected": "could",
+          "got": [
+            "could"
+          ]
+        },
+        "priority:LANG-BM": {
+          "passed": true,
+          "expected": "should",
+          "got": [
+            "should"
+          ]
+        },
+        "buried:FR-UI": {
+          "passed": true
+        },
+        "buried:FR-EXPLAIN": {
+          "passed": true
+        },
+        "risk:TRAP-TIMELINE": {
+          "passed": false,
+          "kind": "trap",
+          "found": true,
+          "linked": false,
+          "in": [
+            "R-01",
+            "R-03",
+            "R-05"
+          ]
+        },
+        "risk:TRAP-RETENTION": {
+          "passed": false,
+          "kind": "trap",
+          "found": false,
+          "linked": false,
+          "in": []
+        },
+        "risk:TRAP-REALTIME": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02"
+          ]
+        }
+      },
+      "hit_core": [
+        "CAP-1",
+        "COM-BUDGET",
+        "COM-IP",
+        "COM-OUTCOME",
+        "EVAL-1",
+        "FR-1",
+        "FR-10",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5a",
+        "FR-6",
+        "FR-7a",
+        "FR-8a",
+        "FR-8b",
+        "FR-9",
+        "FR-EXPLAIN",
+        "FR-UI",
+        "INT-1a",
+        "INT-1c",
+        "INT-2a",
+        "INT-2b",
+        "INT-3a",
+        "INT-4",
+        "INT-SFTP",
+        "LANG-BM",
+        "LANG-ZH",
+        "NFR-1a",
+        "NFR-1b",
+        "NFR-2",
+        "NFR-3a",
+        "NFR-4",
+        "NFR-5",
+        "NFR-6",
+        "NFR-7",
+        "SCOPE-7",
+        "SEC-1",
+        "SEC-2",
+        "SEC-3b",
+        "SEC-4b",
+        "SEC-5a",
+        "SEC-6",
+        "SEC-7",
+        "SEC-DEL",
+        "SEC-SIU",
+        "TEAM-NAMED",
+        "TL-PILOT"
+      ],
+      "error": null
+    },
+    {
+      "run": "live6",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 91,
+        "recall_core": 0.86,
+        "recall_must": 0.848,
+        "recall_core_lenient": 0.965,
+        "precision": 0.923,
+        "distinct_precision": 0.846,
+        "false_positives": 7,
+        "splits": 7,
+        "priority_acc": 0.959,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 6,
+        "trap_checks_total": 7,
+        "trap_risks_found": 3,
+        "trap_risks_linked": 2,
+        "expected_risks_found": 2,
+        "risks": 6,
+        "approach_items": 20,
+        "approach_must_coverage": 0.864,
+        "open_questions": 21,
+        "critic_passed": 0,
+        "revisions": 2,
+        "wall_min": 17.0,
+        "llm_calls": 50,
+        "prompt_tokens": 74516,
+        "completion_tokens": 24283,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.1.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.3.0"
+      },
+      "missed_core": [
+        "COM-RUN",
+        "FR-5b",
+        "FR-7b",
+        "INT-3b",
+        "SEC-3a",
+        "SEC-4a",
+        "SEC-5b",
+        "SEC-REG"
+      ],
+      "false_positives": [
+        {
+          "id": "NFR-03",
+          "title": "Store documents on network file share",
+          "quote": "Documents are stored in a document management system (DMS) on a network file share, with m"
+        },
+        {
+          "id": "NFR-04",
+          "title": "Historical claim documents storage",
+          "quote": "Roughly 9 TB of historical claim documents exist, of which approximately 2.1 million docum"
+        },
+        {
+          "id": "NFR-07",
+          "title": "Two data centres in Malaysia",
+          "quote": "The Company operates two data centres in Malaysia (primary in Cyberjaya, secondary in Joho"
+        },
+        {
+          "id": "NFR-08",
+          "title": "Limited use of Microsoft Azure",
+          "quote": "The Company operates two data centres in Malaysia (primary in Cyberjaya, secondary in Joho"
+        },
+        {
+          "id": "INT-01",
+          "title": "Use ClaimsNet",
+          "quote": "Claims are managed in **ClaimsNet**, an in-house claims management system built on Java an"
+        },
+        {
+          "id": "INT-02",
+          "title": "No REST API",
+          "quote": "ClaimsNet exposes a limited set of SOAP web services; there is no REST API today, and the "
+        },
+        {
+          "id": "INT-03",
+          "title": "Use IBM MQ for PAS",
+          "quote": "Policy data sits in a mainframe-hosted policy administration system (PAS) that is accessed"
+        }
+      ],
+      "split_groups": {
+        "FR-8a": [
+          "FR-18",
+          "FR-19",
+          "FR-20"
+        ],
+        "ENV-2": [
+          "NFR-05",
+          "NFR-06"
+        ],
+        "EVAL-1": [
+          "NFR-20",
+          "NFR-21",
+          "NFR-22",
+          "NFR-23",
+          "NFR-24"
+        ]
+      },
+      "wrong_priority": [
+        {
+          "gold": "FR-9",
+          "pred": "FR-22",
+          "expected": "should",
+          "got": "must"
+        },
+        {
+          "gold": "SEC-SIU",
+          "pred": "NFR-19",
+          "expected": "must",
+          "got": "should"
+        }
+      ],
+      "traps": {
+        "priority:LANG-ZH": {
+          "passed": true,
+          "expected": "could",
+          "got": [
+            "could"
+          ]
+        },
+        "priority:LANG-BM": {
+          "passed": true,
+          "expected": "should",
+          "got": [
+            "should"
+          ]
+        },
+        "buried:FR-UI": {
+          "passed": true
+        },
+        "buried:FR-EXPLAIN": {
+          "passed": true
+        },
+        "risk:TRAP-TIMELINE": {
+          "passed": false,
+          "kind": "trap",
+          "found": true,
+          "linked": false,
+          "in": [
+            "R-01",
+            "R-06"
+          ]
+        },
+        "risk:TRAP-RETENTION": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-05"
+          ]
+        },
+        "risk:TRAP-REALTIME": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02",
+            "Q20"
+          ]
+        }
+      },
+      "hit_core": [
+        "CAP-1",
+        "COM-BUDGET",
+        "COM-IP",
+        "COM-OUTCOME",
+        "EVAL-1",
+        "FR-1",
+        "FR-10",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5a",
+        "FR-6",
+        "FR-7a",
+        "FR-8a",
+        "FR-8b",
+        "FR-9",
+        "FR-EXPLAIN",
+        "FR-UI",
+        "INT-1a",
+        "INT-1c",
+        "INT-2a",
+        "INT-2b",
+        "INT-3a",
+        "INT-4",
+        "INT-SFTP",
+        "LANG-BM",
+        "LANG-ZH",
+        "NFR-1a",
+        "NFR-1b",
+        "NFR-2",
+        "NFR-3a",
+        "NFR-3b",
+        "NFR-4",
+        "NFR-5",
+        "NFR-6",
+        "NFR-7",
+        "SCOPE-7",
+        "SEC-1",
+        "SEC-2",
+        "SEC-3b",
+        "SEC-4b",
+        "SEC-5a",
+        "SEC-6",
+        "SEC-7",
+        "SEC-DEL",
+        "SEC-SIU",
+        "TEAM-MY",
+        "TEAM-NAMED",
+        "TL-PILOT"
+      ],
+      "error": null
+    },
+    {
+      "run": "live7",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 91,
+        "recall_core": 0.86,
+        "recall_must": 0.848,
+        "recall_core_lenient": 0.965,
+        "precision": 0.923,
+        "distinct_precision": 0.846,
+        "false_positives": 7,
+        "splits": 7,
+        "priority_acc": 0.959,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 6,
+        "trap_checks_total": 7,
+        "trap_risks_found": 3,
+        "trap_risks_linked": 2,
+        "expected_risks_found": 2,
+        "risks": 10,
+        "approach_items": 39,
+        "approach_must_coverage": 1.0,
+        "open_questions": 21,
+        "critic_passed": 1,
+        "revisions": 1,
+        "wall_min": 14.5,
+        "llm_calls": 47,
+        "prompt_tokens": 57288,
+        "completion_tokens": 21181,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.1.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.3.0"
+      },
+      "missed_core": [
+        "COM-RUN",
+        "FR-5b",
+        "FR-7b",
+        "INT-3b",
+        "SEC-3a",
+        "SEC-4a",
+        "SEC-5b",
+        "SEC-REG"
+      ],
+      "false_positives": [
+        {
+          "id": "NFR-03",
+          "title": "Store documents on network file share",
+          "quote": "Documents are stored in a document management system (DMS) on a network file share, with m"
+        },
+        {
+          "id": "NFR-04",
+          "title": "Historical claim documents storage",
+          "quote": "Roughly 9 TB of historical claim documents exist, of which approximately 2.1 million docum"
+        },
+        {
+          "id": "NFR-07",
+          "title": "Two data centres in Malaysia",
+          "quote": "The Company operates two data centres in Malaysia (primary in Cyberjaya, secondary in Joho"
+        },
+        {
+          "id": "NFR-08",
+          "title": "Limited use of Microsoft Azure",
+          "quote": "The Company operates two data centres in Malaysia (primary in Cyberjaya, secondary in Joho"
+        },
+        {
+          "id": "INT-01",
+          "title": "Use ClaimsNet",
+          "quote": "Claims are managed in **ClaimsNet**, an in-house claims management system built on Java an"
+        },
+        {
+          "id": "INT-02",
+          "title": "No REST API",
+          "quote": "ClaimsNet exposes a limited set of SOAP web services; there is no REST API today, and the "
+        },
+        {
+          "id": "INT-03",
+          "title": "Use IBM MQ for PAS",
+          "quote": "Policy data sits in a mainframe-hosted policy administration system (PAS) that is accessed"
+        }
+      ],
+      "split_groups": {
+        "FR-8a": [
+          "FR-18",
+          "FR-19",
+          "FR-20"
+        ],
+        "ENV-2": [
+          "NFR-05",
+          "NFR-06"
+        ],
+        "EVAL-1": [
+          "NFR-20",
+          "NFR-21",
+          "NFR-22",
+          "NFR-23",
+          "NFR-24"
+        ]
+      },
+      "wrong_priority": [
+        {
+          "gold": "FR-9",
+          "pred": "FR-22",
+          "expected": "should",
+          "got": "must"
+        },
+        {
+          "gold": "SEC-SIU",
+          "pred": "NFR-19",
+          "expected": "must",
+          "got": "should"
+        }
+      ],
+      "traps": {
+        "priority:LANG-ZH": {
+          "passed": true,
+          "expected": "could",
+          "got": [
+            "could"
+          ]
+        },
+        "priority:LANG-BM": {
+          "passed": true,
+          "expected": "should",
+          "got": [
+            "should"
+          ]
+        },
+        "buried:FR-UI": {
+          "passed": true
+        },
+        "buried:FR-EXPLAIN": {
+          "passed": true
+        },
+        "risk:TRAP-TIMELINE": {
+          "passed": false,
+          "kind": "trap",
+          "found": true,
+          "linked": false,
+          "in": [
+            "R-01",
+            "R-06"
+          ]
+        },
+        "risk:TRAP-RETENTION": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-03"
+          ]
+        },
+        "risk:TRAP-REALTIME": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02",
+            "R-05",
+            "Q20"
+          ]
+        }
+      },
+      "hit_core": [
+        "CAP-1",
+        "COM-BUDGET",
+        "COM-IP",
+        "COM-OUTCOME",
+        "EVAL-1",
+        "FR-1",
+        "FR-10",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5a",
+        "FR-6",
+        "FR-7a",
+        "FR-8a",
+        "FR-8b",
+        "FR-9",
+        "FR-EXPLAIN",
+        "FR-UI",
+        "INT-1a",
+        "INT-1c",
+        "INT-2a",
+        "INT-2b",
+        "INT-3a",
+        "INT-4",
+        "INT-SFTP",
+        "LANG-BM",
+        "LANG-ZH",
+        "NFR-1a",
+        "NFR-1b",
+        "NFR-2",
+        "NFR-3a",
+        "NFR-3b",
+        "NFR-4",
+        "NFR-5",
+        "NFR-6",
+        "NFR-7",
+        "SCOPE-7",
+        "SEC-1",
+        "SEC-2",
+        "SEC-3b",
+        "SEC-4b",
+        "SEC-5a",
+        "SEC-6",
+        "SEC-7",
+        "SEC-DEL",
+        "SEC-SIU",
+        "TEAM-MY",
+        "TEAM-NAMED",
+        "TL-PILOT"
+      ],
+      "error": null
+    },
+    {
+      "run": "live8",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 78,
+        "recall_core": 0.825,
+        "recall_must": 0.783,
+        "recall_core_lenient": 0.965,
+        "precision": 0.962,
+        "distinct_precision": 0.949,
+        "false_positives": 3,
+        "splits": 1,
+        "priority_acc": 0.936,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 6,
+        "trap_checks_total": 7,
+        "trap_risks_found": 3,
+        "trap_risks_linked": 2,
+        "expected_risks_found": 2,
+        "risks": 5,
+        "approach_items": 38,
+        "approach_must_coverage": 1.0,
+        "open_questions": 17,
+        "critic_passed": 1,
+        "revisions": 2,
+        "wall_min": 21.1,
+        "llm_calls": 62,
+        "prompt_tokens": 81400,
+        "completion_tokens": 29902,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.1.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.3.0"
+      },
+      "missed_core": [
+        "COM-BUDGET",
+        "FR-5b",
+        "FR-7b",
+        "INT-2b",
+        "INT-3b",
+        "SEC-3b",
+        "SEC-4a",
+        "SEC-5b",
+        "SEC-REG",
+        "SEC-SIU"
+      ],
+      "false_positives": [
+        {
+          "id": "NFR-01",
+          "title": "Claims settlement not in scope",
+          "quote": "- Claims settlement and payment processing."
+        },
+        {
+          "id": "NFR-02",
+          "title": "Policy admin system core logic changes not in scope",
+          "quote": "- Changes to the policy administration system's core logic."
+        },
+        {
+          "id": "NFR-04",
+          "title": "Life and medical insurance claims out of scope",
+          "quote": "- Life and medical insurance claims, which are handled by our affiliate and are not part o"
+        }
+      ],
+      "split_groups": {
+        "FR-8a": [
+          "FR-19",
+          "FR-20"
+        ]
+      },
+      "wrong_priority": [
+        {
+          "gold": "FR-9",
+          "pred": "FR-22",
+          "expected": "should",
+          "got": "must"
+        },
+        {
+          "gold": "SCOPE-7",
+          "pred": "COM-02",
+          "expected": "must",
+          "got": "should"
+        },
+        {
+          "gold": "SEC-DEL",
+          "pred": "SEC-08",
+          "expected": "must",
+          "got": "should"
+        }
+      ],
+      "traps": {
+        "priority:LANG-ZH": {
+          "passed": true,
+          "expected": "could",
+          "got": [
+            "could"
+          ]
+        },
+        "priority:LANG-BM": {
+          "passed": true,
+          "expected": "should",
+          "got": [
+            "should"
+          ]
+        },
+        "buried:FR-UI": {
+          "passed": true
+        },
+        "buried:FR-EXPLAIN": {
+          "passed": true
+        },
+        "risk:TRAP-TIMELINE": {
+          "passed": false,
+          "kind": "trap",
+          "found": true,
+          "linked": false,
+          "in": [
+            "R-01"
+          ]
+        },
+        "risk:TRAP-RETENTION": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-03"
+          ]
+        },
+        "risk:TRAP-REALTIME": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02",
+            "Q16"
+          ]
+        }
+      },
+      "hit_core": [
+        "CAP-1",
+        "COM-IP",
+        "COM-OUTCOME",
+        "COM-RUN",
+        "EVAL-1",
+        "FR-1",
+        "FR-10",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5a",
+        "FR-6",
+        "FR-7a",
+        "FR-8a",
+        "FR-8b",
+        "FR-9",
+        "FR-EXPLAIN",
+        "FR-UI",
+        "INT-1a",
+        "INT-1c",
+        "INT-2a",
+        "INT-3a",
+        "INT-4",
+        "INT-SFTP",
+        "LANG-BM",
+        "LANG-ZH",
+        "NFR-1a",
+        "NFR-1b",
+        "NFR-2",
+        "NFR-3a",
+        "NFR-3b",
+        "NFR-4",
+        "NFR-5",
+        "NFR-6",
+        "NFR-7",
+        "SCOPE-7",
+        "SEC-1",
+        "SEC-2",
+        "SEC-3a",
+        "SEC-4b",
+        "SEC-5a",
+        "SEC-6",
+        "SEC-7",
+        "SEC-DEL",
+        "TEAM-MY",
+        "TEAM-NAMED",
+        "TL-PILOT"
+      ],
+      "error": null
+    },
+    {
+      "run": "live9",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 76,
+        "recall_core": 0.842,
+        "recall_must": 0.826,
+        "recall_core_lenient": 0.965,
+        "precision": 1.0,
+        "distinct_precision": 0.987,
+        "false_positives": 0,
+        "splits": 1,
+        "priority_acc": 0.958,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 7,
+        "trap_checks_total": 7,
+        "trap_risks_found": 3,
+        "trap_risks_linked": 3,
+        "expected_risks_found": 2,
+        "risks": 7,
+        "approach_items": 47,
+        "approach_must_coverage": 1.0,
+        "open_questions": 21,
+        "critic_passed": 1,
+        "revisions": 0,
+        "wall_min": 11.1,
+        "llm_calls": 30,
+        "prompt_tokens": 39816,
+        "completion_tokens": 16485,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.1.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.3.0"
+      },
+      "missed_core": [
+        "COM-RUN",
+        "FR-5b",
+        "FR-7b",
+        "INT-2b",
+        "INT-3b",
+        "SEC-3a",
+        "SEC-4a",
+        "SEC-5b",
+        "SEC-REG"
+      ],
+      "false_positives": [],
+      "split_groups": {
+        "FR-8a": [
+          "FR-18",
+          "FR-19"
+        ]
+      },
+      "wrong_priority": [
+        {
+          "gold": "FR-9",
+          "pred": "FR-21",
+          "expected": "should",
+          "got": "must"
+        },
+        {
+          "gold": "SEC-SIU",
+          "pred": "NFR-14",
+          "expected": "must",
+          "got": "should"
+        }
+      ],
+      "traps": {
+        "priority:LANG-ZH": {
+          "passed": true,
+          "expected": "could",
+          "got": [
+            "could"
+          ]
+        },
+        "priority:LANG-BM": {
+          "passed": true,
+          "expected": "should",
+          "got": [
+            "should"
+          ]
+        },
+        "buried:FR-UI": {
+          "passed": true
+        },
+        "buried:FR-EXPLAIN": {
+          "passed": true
+        },
+        "risk:TRAP-TIMELINE": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-01",
+            "R-04"
+          ]
+        },
+        "risk:TRAP-RETENTION": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-03"
+          ]
+        },
+        "risk:TRAP-REALTIME": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02",
+            "Q20"
+          ]
+        }
+      },
+      "hit_core": [
+        "CAP-1",
+        "COM-BUDGET",
+        "COM-IP",
+        "COM-OUTCOME",
+        "EVAL-1",
+        "FR-1",
+        "FR-10",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5a",
+        "FR-6",
+        "FR-7a",
+        "FR-8a",
+        "FR-8b",
+        "FR-9",
+        "FR-EXPLAIN",
+        "FR-UI",
+        "INT-1a",
+        "INT-1c",
+        "INT-2a",
+        "INT-3a",
+        "INT-4",
+        "INT-SFTP",
+        "LANG-BM",
+        "LANG-ZH",
+        "NFR-1a",
+        "NFR-1b",
+        "NFR-2",
+        "NFR-3a",
+        "NFR-3b",
+        "NFR-4",
+        "NFR-5",
+        "NFR-6",
+        "NFR-7",
+        "SCOPE-7",
+        "SEC-1",
+        "SEC-2",
+        "SEC-3b",
+        "SEC-4b",
+        "SEC-5a",
+        "SEC-6",
+        "SEC-7",
+        "SEC-DEL",
+        "SEC-SIU",
+        "TEAM-MY",
+        "TEAM-NAMED",
+        "TL-PILOT"
+      ],
+      "error": null
+    }
+  ],
+  "aggregate": {
+    "requirements": {
+      "mean": 87.33333333333333,
+      "sd": 8.140434058861153
+    },
+    "recall_core": {
+      "mean": 0.8395,
+      "sd": 0.0171901134376711
+    },
+    "recall_must": {
+      "mean": 0.8224999999999999,
+      "sd": 0.02540669203182497
+    },
+    "recall_core_lenient": {
+      "mean": 0.9561666666666667,
+      "sd": 0.014702607478493938
+    },
+    "precision": {
+      "mean": 0.9006666666666666,
+      "sd": 0.08554453031413913
+    },
+    "distinct_precision": {
+      "mean": 0.8635,
+      "sd": 0.08778781236595429
+    },
+    "false_positives": {
+      "mean": 9.166666666666666,
+      "sd": 8.158839786799755
+    },
+    "splits": {
+      "mean": 3.3333333333333335,
+      "sd": 2.943920288775949
+    },
+    "priority_acc": {
+      "mean": 0.9401666666666667,
+      "sd": 0.034568289900813225
+    },
+    "grounding_rate": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "dropped_ungrounded": {
+      "mean": 1.1666666666666667,
+      "sd": 2.857738033247041
+    },
+    "expected_risks_found": {
+      "mean": 1.6666666666666667,
+      "sd": 0.5163977794943223
+    },
+    "approach_must_coverage": {
+      "mean": 0.935,
+      "sd": 0.10738901247334384
+    },
+    "critic_passed": {
+      "mean": 0.6666666666666666,
+      "sd": 0.5163977794943223
+    },
+    "revisions": {
+      "mean": 1.5,
+      "sd": 0.8366600265340756
+    },
+    "wall_min": {
+      "mean": 25.95,
+      "sd": 23.219539185780583
+    },
+    "llm_calls": {
+      "mean": 47.5,
+      "sd": 10.310189135025603
+    },
+    "prompt_tokens": {
+      "mean": 66028.66666666667,
+      "sd": 18889.3007564247
+    },
+    "completion_tokens": {
+      "mean": 23024.5,
+      "sd": 4739.084246982744
+    }
+  },
+  "consistency": {
+    "runs": 6,
+    "mean_pairwise_jaccard": 0.888,
+    "core_found_in_all_runs": 39,
+    "core_found_in_any_run": 54
+  }
+}

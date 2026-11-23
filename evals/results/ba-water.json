@@ -1,0 +1,382 @@
+{
+  "gold": "evals/rfps/rfp_water_fieldops.md",
+  "gold_status": "draft",
+  "runs": [
+    {
+      "run": "base-water",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 27,
+        "recall_core": 0.923,
+        "recall_must": 0.952,
+        "recall_core_lenient": 0.962,
+        "precision": 1.0,
+        "distinct_precision": 0.963,
+        "false_positives": 0,
+        "splits": 1,
+        "priority_acc": 1.0,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 4,
+        "trap_checks_total": 7,
+        "trap_risks_found": 2,
+        "trap_risks_linked": 2,
+        "expected_risks_found": 0,
+        "risks": 5,
+        "approach_items": 12,
+        "approach_must_coverage": 1.0,
+        "open_questions": 6,
+        "critic_passed": 1,
+        "revisions": 0,
+        "wall_min": 4.4,
+        "llm_calls": 14,
+        "prompt_tokens": 18697,
+        "completion_tokens": 6165,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.1.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.3.0",
+        "judge_req_faithful": 0.85,
+        "judge_req_priority_ok": 1.0,
+        "judge_approach_specificity": 3.83,
+        "judge_constraint_violations": 0,
+        "judge_risk_specificity": 3.4,
+        "judge_risk_mitigation": 5.0,
+        "judge_calls_ok": 37,
+        "judge_min": 1.0
+      },
+      "missed_core": [
+        "COM-CAP",
+        "VOICE"
+      ],
+      "false_positives": [],
+      "split_groups": {
+        "OFFLINE": [
+          "FR-10",
+          "FR-11"
+        ]
+      },
+      "wrong_priority": [],
+      "traps": {
+        "priority:GIS": {
+          "passed": true,
+          "expected": "could",
+          "got": [
+            "could"
+          ]
+        },
+        "priority:TL-PILOT": {
+          "passed": false,
+          "expected": "should",
+          "got": [
+            "must"
+          ]
+        },
+        "buried:OFFLINE": {
+          "passed": true
+        },
+        "buried:VOICE": {
+          "passed": false
+        },
+        "risk:TRAP-UNION-TIMELINE": {
+          "passed": false,
+          "kind": "trap",
+          "found": false,
+          "linked": false,
+          "in": []
+        },
+        "risk:TRAP-VOICE-RECORDS": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-03"
+          ]
+        },
+        "risk:TRAP-RESPONSE-TIME": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02",
+            "Q2",
+            "Q5"
+          ]
+        }
+      },
+      "hit_core": [
+        "COM-PRICE",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "GIS",
+        "I1",
+        "I2a",
+        "I3",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "OFFLINE",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "SCOPE-SCADA",
+        "TL-PILOT",
+        "TRAINING",
+        "UNION"
+      ],
+      "error": null
+    },
+    {
+      "run": "after-water",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 30,
+        "recall_core": 1.0,
+        "recall_must": 1.0,
+        "recall_core_lenient": 1.0,
+        "precision": 1.0,
+        "distinct_precision": 0.933,
+        "false_positives": 0,
+        "splits": 2,
+        "priority_acc": 1.0,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 6,
+        "trap_checks_total": 7,
+        "trap_risks_found": 2,
+        "trap_risks_linked": 2,
+        "expected_risks_found": 0,
+        "risks": 5,
+        "approach_items": 12,
+        "approach_must_coverage": 1.0,
+        "open_questions": 6,
+        "critic_passed": 1,
+        "revisions": 0,
+        "wall_min": 4.4,
+        "llm_calls": 14,
+        "prompt_tokens": 17779,
+        "completion_tokens": 6352,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.1.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.4.0",
+        "judge_req_faithful": 1.0,
+        "judge_req_priority_ok": 0.95,
+        "judge_approach_specificity": 3.83,
+        "judge_constraint_violations": 0,
+        "judge_risk_specificity": 4.6,
+        "judge_risk_mitigation": 5.0,
+        "judge_calls_ok": 37,
+        "judge_min": 1.0
+      },
+      "missed_core": [],
+      "false_positives": [],
+      "split_groups": {
+        "SCOPE-QA": [
+          "FR-01",
+          "FR-02"
+        ],
+        "S1": [
+          "SEC-01",
+          "SEC-02"
+        ]
+      },
+      "wrong_priority": [],
+      "traps": {
+        "priority:GIS": {
+          "passed": true,
+          "expected": "could",
+          "got": [
+            "could"
+          ]
+        },
+        "priority:TL-PILOT": {
+          "passed": true,
+          "expected": "should",
+          "got": [
+            "should"
+          ]
+        },
+        "buried:OFFLINE": {
+          "passed": true
+        },
+        "buried:VOICE": {
+          "passed": true
+        },
+        "risk:TRAP-UNION-TIMELINE": {
+          "passed": false,
+          "kind": "trap",
+          "found": false,
+          "linked": false,
+          "in": []
+        },
+        "risk:TRAP-VOICE-RECORDS": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-04",
+            "R-05"
+          ]
+        },
+        "risk:TRAP-RESPONSE-TIME": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02",
+            "Q2",
+            "Q5"
+          ]
+        }
+      },
+      "hit_core": [
+        "COM-CAP",
+        "COM-PRICE",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "GIS",
+        "I1",
+        "I2a",
+        "I3",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "OFFLINE",
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "SCOPE-SCADA",
+        "TL-PILOT",
+        "TRAINING",
+        "UNION",
+        "VOICE"
+      ],
+      "error": null
+    }
+  ],
+  "aggregate": {
+    "requirements": {
+      "mean": 28.5,
+      "sd": 2.1213203435596424
+    },
+    "recall_core": {
+      "mean": 0.9615,
+      "sd": 0.054447222151364126
+    },
+    "recall_must": {
+      "mean": 0.976,
+      "sd": 0.033941125496954314
+    },
+    "recall_core_lenient": {
+      "mean": 0.981,
+      "sd": 0.02687005768508883
+    },
+    "precision": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "distinct_precision": {
+      "mean": 0.948,
+      "sd": 0.021213203435596364
+    },
+    "false_positives": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "splits": {
+      "mean": 1.5,
+      "sd": 0.7071067811865476
+    },
+    "priority_acc": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "grounding_rate": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "dropped_ungrounded": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "expected_risks_found": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "approach_must_coverage": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "judge_req_faithful": {
+      "mean": 0.925,
+      "sd": 0.10606601717798214
+    },
+    "judge_req_priority_ok": {
+      "mean": 0.975,
+      "sd": 0.03535533905932741
+    },
+    "judge_approach_specificity": {
+      "mean": 3.83,
+      "sd": 0.0
+    },
+    "judge_constraint_violations": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "judge_risk_specificity": {
+      "mean": 4.0,
+      "sd": 0.8485281374238568
+    },
+    "judge_risk_mitigation": {
+      "mean": 5.0,
+      "sd": 0.0
+    },
+    "judge_min": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "critic_passed": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "revisions": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "wall_min": {
+      "mean": 4.4,
+      "sd": 0.0
+    },
+    "llm_calls": {
+      "mean": 14.0,
+      "sd": 0.0
+    },
+    "prompt_tokens": {
+      "mean": 18238.0,
+      "sd": 649.1240251292506
+    },
+    "completion_tokens": {
+      "mean": 6258.5,
+      "sd": 132.22896808188437
+    }
+  },
+  "consistency": {
+    "runs": 2,
+    "mean_pairwise_jaccard": 0.923,
+    "core_found_in_all_runs": 24,
+    "core_found_in_any_run": 26
+  }
+}

@@ -1,0 +1,479 @@
+{
+  "gold": "inputs/rfp_synthetic_main.md",
+  "gold_status": "draft",
+  "runs": [
+    {
+      "run": "eval-20261121-184341-1",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 76,
+        "recall_core": 0.842,
+        "recall_must": 0.826,
+        "recall_core_lenient": 0.965,
+        "precision": 1.0,
+        "distinct_precision": 0.987,
+        "false_positives": 0,
+        "splits": 1,
+        "priority_acc": 0.958,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 6,
+        "trap_checks_total": 7,
+        "trap_risks_found": 2,
+        "trap_risks_linked": 2,
+        "expected_risks_found": 0,
+        "risks": 10,
+        "approach_items": 37,
+        "approach_must_coverage": 1.0,
+        "open_questions": 21,
+        "critic_passed": 1,
+        "revisions": 1,
+        "wall_min": 15.3,
+        "llm_calls": 44,
+        "prompt_tokens": 56298,
+        "completion_tokens": 22336,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.1.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.3.0",
+        "judge_req_faithful": 0.75,
+        "judge_req_priority_ok": 0.75,
+        "judge_approach_specificity": 3.05,
+        "judge_constraint_violations": 0,
+        "judge_risk_specificity": 4.6,
+        "judge_risk_mitigation": 4.4,
+        "judge_calls_ok": 67,
+        "judge_min": 2.1
+      },
+      "missed_core": [
+        "COM-RUN",
+        "FR-5b",
+        "FR-7b",
+        "INT-2b",
+        "INT-3b",
+        "SEC-3a",
+        "SEC-4a",
+        "SEC-5b",
+        "SEC-REG"
+      ],
+      "false_positives": [],
+      "split_groups": {
+        "FR-8a": [
+          "FR-18",
+          "FR-19"
+        ]
+      },
+      "wrong_priority": [
+        {
+          "gold": "FR-9",
+          "pred": "FR-21",
+          "expected": "should",
+          "got": "must"
+        },
+        {
+          "gold": "SEC-SIU",
+          "pred": "NFR-14",
+          "expected": "must",
+          "got": "should"
+        }
+      ],
+      "traps": {
+        "priority:LANG-ZH": {
+          "passed": true,
+          "expected": "could",
+          "got": [
+            "could"
+          ]
+        },
+        "priority:LANG-BM": {
+          "passed": true,
+          "expected": "should",
+          "got": [
+            "should"
+          ]
+        },
+        "buried:FR-UI": {
+          "passed": true
+        },
+        "buried:FR-EXPLAIN": {
+          "passed": true
+        },
+        "risk:TRAP-TIMELINE": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-01",
+            "R-05"
+          ]
+        },
+        "risk:TRAP-RETENTION": {
+          "passed": false,
+          "kind": "trap",
+          "found": false,
+          "linked": false,
+          "in": []
+        },
+        "risk:TRAP-REALTIME": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02",
+            "R-07",
+            "Q21"
+          ]
+        }
+      },
+      "hit_core": [
+        "CAP-1",
+        "COM-BUDGET",
+        "COM-IP",
+        "COM-OUTCOME",
+        "EVAL-1",
+        "FR-1",
+        "FR-10",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5a",
+        "FR-6",
+        "FR-7a",
+        "FR-8a",
+        "FR-8b",
+        "FR-9",
+        "FR-EXPLAIN",
+        "FR-UI",
+        "INT-1a",
+        "INT-1c",
+        "INT-2a",
+        "INT-3a",
+        "INT-4",
+        "INT-SFTP",
+        "LANG-BM",
+        "LANG-ZH",
+        "NFR-1a",
+        "NFR-1b",
+        "NFR-2",
+        "NFR-3a",
+        "NFR-3b",
+        "NFR-4",
+        "NFR-5",
+        "NFR-6",
+        "NFR-7",
+        "SCOPE-7",
+        "SEC-1",
+        "SEC-2",
+        "SEC-3b",
+        "SEC-4b",
+        "SEC-5a",
+        "SEC-6",
+        "SEC-7",
+        "SEC-DEL",
+        "SEC-SIU",
+        "TEAM-MY",
+        "TEAM-NAMED",
+        "TL-PILOT"
+      ],
+      "error": null
+    },
+    {
+      "run": "after-main",
+      "schema_valid": true,
+      "metrics": {
+        "requirements": 81,
+        "recall_core": 0.93,
+        "recall_must": 0.957,
+        "recall_core_lenient": 0.93,
+        "precision": 1.0,
+        "distinct_precision": 0.975,
+        "false_positives": 0,
+        "splits": 2,
+        "priority_acc": 0.943,
+        "grounding_rate": 1.0,
+        "dropped_ungrounded": 0,
+        "trap_checks_passed": 6,
+        "trap_checks_total": 7,
+        "trap_risks_found": 3,
+        "trap_risks_linked": 2,
+        "expected_risks_found": 1,
+        "risks": 7,
+        "approach_items": 41,
+        "approach_must_coverage": 1.0,
+        "open_questions": 20,
+        "critic_passed": 1,
+        "revisions": 1,
+        "wall_min": 14.0,
+        "llm_calls": 48,
+        "prompt_tokens": 60186,
+        "completion_tokens": 20606,
+        "model": "qwen2.5:7b",
+        "prompt_versions": "analyze_risks=1.1.0, critic=1.0.0, design_approach=2.0.0, executive_summary=1.0.0, extract_requirements=1.4.0",
+        "judge_req_faithful": 0.75,
+        "judge_req_priority_ok": 1.0,
+        "judge_approach_specificity": 3.0,
+        "judge_constraint_violations": 0,
+        "judge_risk_specificity": 3.86,
+        "judge_risk_mitigation": 4.43,
+        "judge_calls_ok": 68,
+        "judge_min": 2.0
+      },
+      "missed_core": [
+        "COM-RUN",
+        "INT-1c",
+        "INT-3b",
+        "SEC-REG"
+      ],
+      "false_positives": [],
+      "split_groups": {
+        "FR-8a": [
+          "FR-20",
+          "FR-21"
+        ],
+        "INT-SFTP": [
+          "INT-07",
+          "INT-08"
+        ]
+      },
+      "wrong_priority": [
+        {
+          "gold": "FR-9",
+          "pred": "FR-23",
+          "expected": "should",
+          "got": "must"
+        },
+        {
+          "gold": "SEC-SIU",
+          "pred": "NFR-13",
+          "expected": "must",
+          "got": "should"
+        },
+        {
+          "gold": "TEAM-MY",
+          "pred": "SEC-12",
+          "expected": "must",
+          "got": "should"
+        }
+      ],
+      "traps": {
+        "priority:LANG-ZH": {
+          "passed": true,
+          "expected": "could",
+          "got": [
+            "could"
+          ]
+        },
+        "priority:LANG-BM": {
+          "passed": true,
+          "expected": "should",
+          "got": [
+            "should"
+          ]
+        },
+        "buried:FR-UI": {
+          "passed": true
+        },
+        "buried:FR-EXPLAIN": {
+          "passed": true
+        },
+        "risk:TRAP-TIMELINE": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-01",
+            "R-05"
+          ]
+        },
+        "risk:TRAP-RETENTION": {
+          "passed": false,
+          "kind": "trap",
+          "found": true,
+          "linked": false,
+          "in": [
+            "R-07"
+          ]
+        },
+        "risk:TRAP-REALTIME": {
+          "passed": true,
+          "kind": "trap",
+          "found": true,
+          "linked": true,
+          "in": [
+            "R-02",
+            "Q19"
+          ]
+        }
+      },
+      "hit_core": [
+        "CAP-1",
+        "COM-BUDGET",
+        "COM-IP",
+        "COM-OUTCOME",
+        "EVAL-1",
+        "FR-1",
+        "FR-10",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5a",
+        "FR-5b",
+        "FR-6",
+        "FR-7a",
+        "FR-7b",
+        "FR-8a",
+        "FR-8b",
+        "FR-9",
+        "FR-EXPLAIN",
+        "FR-UI",
+        "INT-1a",
+        "INT-2a",
+        "INT-2b",
+        "INT-3a",
+        "INT-4",
+        "INT-SFTP",
+        "LANG-BM",
+        "LANG-ZH",
+        "NFR-1a",
+        "NFR-1b",
+        "NFR-2",
+        "NFR-3a",
+        "NFR-3b",
+        "NFR-4",
+        "NFR-5",
+        "NFR-6",
+        "NFR-7",
+        "SCOPE-7",
+        "SEC-1",
+        "SEC-2",
+        "SEC-3a",
+        "SEC-3b",
+        "SEC-4a",
+        "SEC-4b",
+        "SEC-5a",
+        "SEC-5b",
+        "SEC-6",
+        "SEC-7",
+        "SEC-DEL",
+        "SEC-SIU",
+        "TEAM-MY",
+        "TEAM-NAMED",
+        "TL-PILOT"
+      ],
+      "error": null
+    }
+  ],
+  "aggregate": {
+    "requirements": {
+      "mean": 78.5,
+      "sd": 3.5355339059327378
+    },
+    "recall_core": {
+      "mean": 0.886,
+      "sd": 0.06222539674441624
+    },
+    "recall_must": {
+      "mean": 0.8915,
+      "sd": 0.09263098833543773
+    },
+    "recall_core_lenient": {
+      "mean": 0.9475,
+      "sd": 0.024748737341529107
+    },
+    "precision": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "distinct_precision": {
+      "mean": 0.981,
+      "sd": 0.008485281374238578
+    },
+    "false_positives": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "splits": {
+      "mean": 1.5,
+      "sd": 0.7071067811865476
+    },
+    "priority_acc": {
+      "mean": 0.9504999999999999,
+      "sd": 0.010606601717798222
+    },
+    "grounding_rate": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "dropped_ungrounded": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "expected_risks_found": {
+      "mean": 0.5,
+      "sd": 0.7071067811865476
+    },
+    "approach_must_coverage": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "judge_req_faithful": {
+      "mean": 0.75,
+      "sd": 0.0
+    },
+    "judge_req_priority_ok": {
+      "mean": 0.875,
+      "sd": 0.1767766952966369
+    },
+    "judge_approach_specificity": {
+      "mean": 3.025,
+      "sd": 0.03535533905932725
+    },
+    "judge_constraint_violations": {
+      "mean": 0.0,
+      "sd": 0.0
+    },
+    "judge_risk_specificity": {
+      "mean": 4.2299999999999995,
+      "sd": 0.523259018078045
+    },
+    "judge_risk_mitigation": {
+      "mean": 4.415,
+      "sd": 0.021213203435595972
+    },
+    "judge_min": {
+      "mean": 2.05,
+      "sd": 0.07071067811865482
+    },
+    "critic_passed": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "revisions": {
+      "mean": 1.0,
+      "sd": 0.0
+    },
+    "wall_min": {
+      "mean": 14.65,
+      "sd": 0.9192388155425123
+    },
+    "llm_calls": {
+      "mean": 46.0,
+      "sd": 2.8284271247461903
+    },
+    "prompt_tokens": {
+      "mean": 58242.0,
+      "sd": 2749.2311652532967
+    },
+    "completion_tokens": {
+      "mean": 21471.0,
+      "sd": 1223.2947314527273
+    }
+  },
+  "consistency": {
+    "runs": 2,
+    "mean_pairwise_jaccard": 0.87,
+    "core_found_in_all_runs": 47,
+    "core_found_in_any_run": 54
+  }
+}

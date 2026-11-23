@@ -1,0 +1,34 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "eval-review",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "evals/review/server.py"
+      ],
+      "port": 8765
+    },
+    {
+      "name": "dashboard",
+      "runtimeExecutable": ".venv/bin/streamlit",
+      "runtimeArgs": [
+        "run",
+        "app/dashboard.py",
+        "--server.headless",
+        "true",
+        "--server.port",
+        "8501"
+      ],
+      "port": 8501
+    },
+    {
+      "name": "phoenix",
+      "runtimeExecutable": ".phoenix-venv/bin/phoenix",
+      "runtimeArgs": [
+        "serve"
+      ],
+      "port": 6006
+    }
+  ]
+}

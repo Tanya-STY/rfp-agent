@@ -1,0 +1,113 @@
+{
+  "rfp_adversarial_council.yaml": {
+    "R1": {
+      "status": "ok"
+    },
+    "R2": {
+      "status": "change",
+      "priority": "should"
+    },
+    "PRICE": {
+      "status": "change",
+      "kind": "core"
+    },
+    "R9": {
+      "status": "ok"
+    },
+    "R8": {
+      "status": "ok"
+    },
+    "R7": {
+      "status": "ok"
+    },
+    "R3a": {
+      "status": "ok"
+    },
+    "R3b": {
+      "status": "ok"
+    },
+    "R4": {
+      "status": "ok"
+    },
+    "R5": {
+      "status": "ok"
+    },
+    "R6": {
+      "status": "ok"
+    },
+    "DP-1": {
+      "status": "ok"
+    },
+    "DP-2": {
+      "status": "ok"
+    },
+    "NO-INFRA": {
+      "status": "ok"
+    },
+    "PAGES": {
+      "status": "ok"
+    },
+    "risk:TRAP-HOSTING-CONTRADICTION": {
+      "status": "ok"
+    },
+    "risk:TRAP-NO-TIMELINE": {
+      "status": "ok"
+    },
+    "risk:EXP-NO-BUDGET": {
+      "status": "ok"
+    },
+    "risk:EXP-SPECIAL-CATEGORY": {
+      "status": "ok"
+    }
+  },
+  "rfp_synthetic_main.yaml": {
+    "FR-EXPLAIN": {
+      "status": "change",
+      "priority": "must"
+    },
+    "LANG-BM": {
+      "status": "change",
+      "priority": "must"
+    },
+    "SEC-REG": {
+      "status": "ok"
+    },
+    "COM-RUN": {
+      "status": "ok"
+    },
+    "INT-1c": {
+      "status": "ok"
+    },
+    "INT-3b": {
+      "status": "ok"
+    },
+    "SEC-SIU": {
+      "status": "ok"
+    },
+    "SCOPE-7": {
+      "status": "ok"
+    },
+    "TEAM-MY": {
+      "status": "ok"
+    },
+    "_rest_ok": true
+  },
+  "rfp_water_fieldops.yaml": {
+    "OFFLINE": {
+      "status": "ok"
+    },
+    "VOICE": {
+      "status": "ok"
+    },
+    "TL-PILOT": {
+      "status": "ok"
+    },
+    "GIS": {
+      "status": "ok"
+    },
+    "EXP-OFFLINE-COPY": {
+      "status": "ok"
+    },
+    "_rest_ok": true
+  }
+}
